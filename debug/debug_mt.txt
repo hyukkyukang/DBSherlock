@@ -1,0 +1,760 @@
+1 2 196 dbmsCurrentLockWaits 1 0 1 0
+1 2 20 cpu_usr (core #18) 3 0 4 36
+1 2 148 osUsedSwapSpace 0 1 0 9
+1 2 147 osFreeSwapSpace 0 0 0 9
+1 2 22 cpu_usr (core #20) 5 1 6 35
+1 2 28 cpu_usr (core #26) 5 2 5 28
+1 2 155 dbmsMeasuredCPU 26 0 26 31
+1 2 90 cpu_idl (core #24) 3 2 6 52
+1 2 86 cpu_idl (core #20) 0 1 1 47
+1 2 92 cpu_idl (core #26) 5 4 5 43
+1 2 34 cpu_usr (core #32) 7 7 7 34
+1 2 84 cpu_idl (core #18) 2 2 3 49
+1 2 48 cpu_sys (core #14) 2 2 11 25
+1 2 32 cpu_usr (core #30) 1 0 4 29
+1 2 66 cpu_sys (core #32) 0 2 0 29
+1 2 145 osNumberOfProcessesCurrentlyRunning 16 10 16 20
+1 2 30 cpu_usr (core #28) 7 1 8 29
+1 2 94 cpu_idl (core #28) 5 1 6 40
+1 2 3 cpu_usr (core #1) 23 6 29 43
+1 2 98 cpu_idl (core #32) 6 12 6 44
+1 2 88 cpu_idl (core #22) 0 0 4 50
+1 2 42 cpu_sys (core #8) 9 1 20 23
+1 2 75 cpu_idl (core #9) 12 2 51 46
+1 2 59 cpu_sys (core #25) 3 17 4 33
+1 2 56 cpu_sys (core #22) 1 2 1 33
+1 2 21 cpu_usr (core #19) 7 2 14 36
+1 2 144 osNumberOfProcessesCreated 14 5 15 5
+1 2 93 cpu_idl (core #27) 13 8 17 47
+1 2 100 AvgCpuSys 34 8 42 46
+1 2 96 cpu_idl (core #30) 1 2 3 43
+1 2 95 cpu_idl (core #29) 9 5 12 51
+1 2 7 cpu_usr (core #5) 37 21 42 40
+1 2 73 cpu_idl (core #7) 15 4 21 49
+1 2 44 cpu_sys (core #10) 4 2 13 26
+1 2 67 cpu_idl (core #1) 10 1 21 44
+1 2 87 cpu_idl (core #21) 15 7 22 43
+1 2 58 cpu_sys (core #24) 0 1 1 33
+1 2 81 cpu_idl (core #15) 39 32 42 49
+1 2 40 cpu_sys (core #6) 4 1 8 20
+1 2 60 cpu_sys (core #26) 0 2 0 32
+1 2 46 cpu_sys (core #12) 5 0 9 25
+1 2 36 cpu_sys (core #2) 10 4 18 30
+1 2 25 cpu_usr (core #23) 31 5 46 38
+1 2 15 cpu_usr (core #13) 35 28 41 38
+1 2 50 cpu_sys (core #16) 4 1 12 19
+1 2 196 dbmsCurrentLockWaits 0 0 1 0
+1 2 146 osDiskUtilization 1 0 34 33
+1 2 165 dbmsThreadsRunning 7 1 29 21
+1 2 75 cpu_idl (core #9) 0 1 51 46
+1 2 101 AvgCpuIdle 0 0 43 48
+1 2 81 cpu_idl (core #15) 0 2 42 49
+1 2 68 cpu_idl (core #2) 0 0 47 46
+1 2 104 AvgCpuSiq 1 3 41 36
+1 2 71 cpu_idl (core #5) 0 1 36 46
+1 2 85 cpu_idl (core #19) 0 5 15 45
+1 2 69 cpu_idl (core #3) 1 2 39 40
+1 2 95 cpu_idl (core #29) 0 3 12 51
+1 2 79 cpu_idl (core #13) 0 2 44 33
+1 2 73 cpu_idl (core #7) 0 1 21 49
+1 2 97 cpu_idl (core #31) 0 4 23 45
+1 2 87 cpu_idl (core #21) 0 0 22 43
+1 2 77 cpu_idl (core #11) 0 0 40 39
+1 2 15 cpu_usr (core #13) 0 1 41 38
+1 2 23 cpu_usr (core #21) 0 0 26 35
+1 2 84 cpu_idl (core #18) 0 1 3 49
+1 2 40 cpu_sys (core #6) 0 1 8 20
+1 2 83 cpu_idl (core #17) 0 2 37 44
+1 2 127 osInterruptCount15 1 0 41 39
+1 2 21 cpu_usr (core #19) 0 5 14 36
+1 2 100 AvgCpuSys 1 1 42 46
+1 2 141 osNumberOfWritesCompleted 1 4 45 43
+1 2 99 AvgCpuUser 1 1 54 55
+1 2 72 cpu_idl (core #6) 0 0 46 50
+1 2 193 dbmsCommittedCommands 2 0 2 0
+1 2 140 osNumberOfReadsIssued 1 1 33 24
+1 2 116 osInterruptCount4 2 4 50 43
+1 2 126 osInterruptCount14 1 0 38 26
+1 2 117 osInterruptCount5 3 6 41 29
+1 2 106 osNumberOfContextSwitches 0 3 51 49
+1 2 134 osInterruptCount22 2 9 53 48
+1 2 167 dbmsLogWritesMB 2 0 2 0
+1 2 190 dbmsNumberOfLogicalReadRequests 2 0 2 0
+1 2 199 dbmsReadRequests 2 0 2 0
+1 2 133 osInterruptCount21 2 6 51 46
+1 2 9 cpu_usr (core #7) 1 1 29 49
+1 2 135 osInterruptCount23 43 39 43 39
+1 2 132 osInterruptCount20 3 8 53 44
+1 2 171 dbmsNumberOfLogWriteRequests 2 0 2 0
+1 2 170 dbmsNumberOfDataWrites 2 0 2 0
+1 2 156 dbmsChangedRows 2 0 2 0
+1 2 178 dbmsNumberOfKeyBasedReadRequests 2 0 2 0
+1 2 153 osNetworkSendKB 0 2 52 46
+1 2 187 dbmsBufferPoolWrites 2 0 2 0
+1 2 56 cpu_sys (core #22) 0 1 1 33
+1 2 121 osInterruptCount9 0 0 40 30
+1 2 183 dbmsDoublePageWritesMB 1 0 2 0
+1 2 182 dbmsPageWritesMB 1 0 2 0
+1 2 70 cpu_idl (core #4) 0 0 41 33
+1 2 154 osNetworkRecvKB 1 1 49 45
+1 2 88 cpu_idl (core #22) 0 0 4 50
+1 2 7 cpu_usr (core #5) 1 1 42 40
+1 2 172 dbmsNumberOfFysncLogWrites 2 0 2 0
+1 2 166 dbmsTotalWritesMB 1 0 2 0
+1 2 168 dbmsNumberOfPhysicalLogWrites 2 0 2 0
+1 2 13 cpu_usr (core #11) 0 1 35 38
+1 2 107 osNumberOfSectorReads 0 2 44 37
+1 2 6 cpu_usr (core #4) 1 1 46 38
+1 2 98 cpu_idl (core #32) 0 2 6 44
+1 2 33 cpu_usr (core #31) 0 4 29 37
+1 2 129 osInterruptCount17 1 3 29 25
+1 2 125 osInterruptCount13 0 1 26 25
+1 2 102 AvgCpuWai 0 2 54 48
+1 2 169 dbmsNumberOfDataReads 2 0 2 0
+1 2 198 dbmsLockWaitTime 1 0 2 0
+1 2 201 dbmsPhysicalReadsMB 2 0 2 0
+1 2 4 cpu_usr (core #2) 1 0 47 40
+1 2 5 cpu_usr (core #3) 0 2 50 41
+1 2 191 dbmsNumberOfLogicalReadsFromDisk 2 0 2 0
+1 2 200 dbmsReads 2 0 2 0
+1 2 67 cpu_idl (core #1) 2 3 21 44
+1 2 118 osInterruptCount6 1 0 41 31
+1 2 89 cpu_idl (core #23) 0 0 42 43
+1 2 163 dbmsFreePages 2 3 45 37
+1 2 3 cpu_usr (core #1) 2 6 29 43
+1 2 37 cpu_sys (core #3) 0 3 24 24
+1 2 20 cpu_usr (core #18) 0 0 4 36
+1 2 162 dbmsDataPages 0 1 3 7
+1 2 176 dbmsNumberOfRowInsertRequests 2 0 2 0
+1 2 110 osAllocatedINodes 13 19 13 19
+1 2 162 dbmsDataPages 0 2 3 7
+1 2 147 osFreeSwapSpace 0 9 0 9
+1 2 148 osUsedSwapSpace 0 9 0 9
+1 2 179 dbmsNumberOfNextKeyBasedReadRequests 1 0 2 0
+1 2 201 dbmsPhysicalReadsMB 1 0 2 0
+1 2 102 AvgCpuWai 0 0 54 48
+1 2 169 dbmsNumberOfDataReads 1 0 2 0
+1 2 160 dbmsCurrentDirtyPages 4 22 57 45
+1 2 163 dbmsFreePages 1 7 45 37
+1 2 28 cpu_usr (core #26) 4 0 5 28
+1 2 191 dbmsNumberOfLogicalReadsFromDisk 1 0 2 0
+1 2 200 dbmsReads 1 0 2 0
+1 2 64 cpu_sys (core #30) 0 5 1 31
+1 2 134 osInterruptCount22 2 6 53 48
+1 2 198 dbmsLockWaitTime 1 0 2 0
+1 2 22 cpu_usr (core #20) 4 0 6 35
+1 2 59 cpu_sys (core #25) 2 3 4 33
+1 2 51 cpu_sys (core #17) 0 5 20 27
+1 2 86 cpu_idl (core #20) 0 5 1 47
+1 2 132 osInterruptCount20 9 19 53 44
+1 2 100 AvgCpuSys 13 5 42 46
+1 2 68 cpu_idl (core #2) 26 4 47 46
+1 2 172 dbmsNumberOfFysncLogWrites 1 0 2 0
+1 2 168 dbmsNumberOfPhysicalLogWrites 1 0 2 0
+1 2 71 cpu_idl (core #5) 11 0 36 46
+1 2 49 cpu_sys (core #15) 0 3 20 22
+1 2 66 cpu_sys (core #32) 0 2 0 29
+1 2 146 osDiskUtilization 1 1 34 33
+1 2 40 cpu_sys (core #6) 0 1 8 20
+1 2 12 cpu_usr (core #10) 0 0 42 25
+1 2 104 AvgCpuSiq 1 1 41 36
+1 2 43 cpu_sys (core #9) 4 2 26 28
+1 2 140 osNumberOfReadsIssued 0 0 33 24
+1 2 73 cpu_idl (core #7) 15 3 21 49
+1 2 165 dbmsThreadsRunning 0 0 29 21
+1 2 155 dbmsMeasuredCPU 26 11 26 31
+1 2 197 dbmsLockWaits 1 0 2 0
+1 2 194 dbmsRolledbackCommands 2 0 2 0
+1 2 175 dbmsNumberOfNextRowReadRequests 1 4 2 4
+1 2 42 cpu_sys (core #8) 10 23 20 23
+1 2 50 cpu_sys (core #16) 10 3 12 19
+1 2 78 cpu_idl (core #12) 35 23 41 39
+1 2 9 cpu_usr (core #7) 26 11 29 49
+1 2 57 cpu_sys (core #23) 9 8 18 26
+1 2 140 osNumberOfReadsIssued 8 4 33 24
+1 2 46 cpu_sys (core #12) 4 25 9 25
+1 2 132 osInterruptCount20 1 0 53 44
+1 2 104 AvgCpuSiq 0 3 41 36
+1 2 128 osInterruptCount16 22 6 41 29
+1 2 60 cpu_sys (core #26) 0 11 0 32
+1 2 91 cpu_idl (core #25) 9 5 11 48
+1 2 62 cpu_sys (core #28) 1 12 1 34
+1 2 54 cpu_sys (core #20) 0 29 0 32
+1 2 56 cpu_sys (core #22) 1 22 1 33
+1 2 24 cpu_usr (core #22) 6 12 6 34
+1 2 186 dbmsNumberOfPendingReads 1 0 3 0
+1 2 37 cpu_sys (core #3) 13 17 24 24
+1 2 63 cpu_sys (core #29) 3 30 7 35
+1 2 31 cpu_usr (core #29) 13 5 13 37
+1 2 41 cpu_sys (core #7) 6 25 13 28
+1 2 14 cpu_usr (core #12) 39 14 48 29
+1 2 88 cpu_idl (core #22) 4 30 4 50
+1 2 20 cpu_usr (core #18) 4 8 4 36
+1 2 18 cpu_usr (core #16) 31 10 44 25
+1 2 26 cpu_usr (core #24) 5 12 5 34
+1 2 196 dbmsCurrentLockWaits 0 0 1 0
+1 2 27 cpu_usr (core #25) 12 4 13 38
+1 2 33 cpu_usr (core #31) 23 4 29 37
+1 2 101 AvgCpuIdle 43 8 43 48
+1 2 126 osInterruptCount14 21 8 38 26
+1 2 21 cpu_usr (core #19) 11 7 14 36
+1 2 120 osInterruptCount8 14 5 41 34
+1 2 198 dbmsLockWaitTime 1 0 2 0
+1 2 13 cpu_usr (core #11) 21 8 35 38
+1 2 16 cpu_usr (core #14) 37 11 47 28
+1 2 109 osAllocatedFileHandlers 5 0 6 4
+1 2 58 cpu_sys (core #24) 1 14 1 33
+1 2 131 osInterruptCount19 1 6 57 48
+1 2 155 dbmsMeasuredCPU 1 1 26 31
+1 2 56 cpu_sys (core #22) 0 0 1 33
+1 2 99 AvgCpuUser 1 1 54 55
+1 2 58 cpu_sys (core #24) 0 0 1 33
+1 2 62 cpu_sys (core #28) 0 0 1 34
+1 2 65 cpu_sys (core #31) 0 1 7 29
+1 2 11 cpu_usr (core #9) 1 3 47 38
+1 2 64 cpu_sys (core #30) 0 13 1 31
+1 2 13 cpu_usr (core #11) 1 2 35 38
+1 2 107 osNumberOfSectorReads 0 1 44 37
+1 2 29 cpu_usr (core #27) 0 5 20 43
+1 2 27 cpu_usr (core #25) 1 2 13 38
+1 2 149 osNumberOfAllocatedPage 0 1 20 22
+1 2 30 cpu_usr (core #28) 8 8 8 29
+1 2 3 cpu_usr (core #1) 1 0 29 43
+1 2 42 cpu_sys (core #8) 0 0 20 23
+1 2 104 AvgCpuSiq 3 6 41 36
+1 2 45 cpu_sys (core #11) 0 2 12 22
+1 2 90 cpu_idl (core #24) 4 5 6 52
+1 2 140 osNumberOfReadsIssued 1 1 33 24
+1 2 15 cpu_usr (core #13) 0 3 41 38
+1 2 21 cpu_usr (core #19) 0 3 14 36
+1 2 7 cpu_usr (core #5) 2 1 42 40
+1 2 17 cpu_usr (core #15) 1 1 51 42
+1 2 38 cpu_sys (core #4) 0 3 17 26
+1 2 9 cpu_usr (core #7) 1 1 29 49
+1 2 33 cpu_usr (core #31) 0 1 29 37
+1 2 46 cpu_sys (core #12) 0 6 9 25
+1 2 43 cpu_sys (core #9) 0 5 26 28
+1 2 92 cpu_idl (core #26) 4 1 5 43
+1 2 151 osNumberOfMajorPageFaults 0 1 0 1
+1 2 60 cpu_sys (core #26) 0 4 0 32
+1 2 50 cpu_sys (core #16) 0 6 12 19
+1 2 132 osInterruptCount20 2 5 53 44
+1 2 102 AvgCpuWai 0 0 54 48
+1 2 154 osNetworkRecvKB 3 6 49 45
+1 2 134 osInterruptCount22 1 3 53 48
+1 2 93 cpu_idl (core #27) 0 12 17 47
+1 2 135 osInterruptCount23 31 38 43 39
+1 2 63 cpu_sys (core #29) 0 0 7 35
+1 2 133 osInterruptCount21 2 4 51 46
+1 2 170 dbmsNumberOfDataWrites 2 0 2 0
+1 2 23 cpu_usr (core #21) 0 1 26 35
+1 2 193 dbmsCommittedCommands 2 0 2 0
+1 2 178 dbmsNumberOfKeyBasedReadRequests 2 0 2 0
+1 2 36 cpu_sys (core #2) 0 6 18 30
+1 2 153 osNetworkSendKB 2 6 52 46
+1 2 172 dbmsNumberOfFysncLogWrites 2 0 2 0
+1 2 168 dbmsNumberOfPhysicalLogWrites 2 0 2 0
+1 2 190 dbmsNumberOfLogicalReadRequests 2 0 2 0
+1 2 199 dbmsReadRequests 2 0 2 0
+1 2 54 cpu_sys (core #20) 0 3 0 32
+1 2 156 dbmsChangedRows 2 0 2 0
+1 2 44 cpu_sys (core #10) 0 5 13 26
+1 2 167 dbmsLogWritesMB 2 0 2 0
+1 2 187 dbmsBufferPoolWrites 2 0 2 0
+1 2 31 cpu_usr (core #29) 0 1 13 37
+1 2 179 dbmsNumberOfNextKeyBasedReadRequests 2 0 2 0
+1 2 122 osInterruptCount10 1 0 37 29
+1 2 57 cpu_sys (core #23) 0 0 18 26
+1 2 166 dbmsTotalWritesMB 2 0 2 0
+1 2 68 cpu_idl (core #2) 15 0 47 46
+1 2 19 cpu_usr (core #17) 2 3 46 36
+1 2 35 cpu_sys (core #1) 0 6 12 37
+1 2 108 osNumberOfSectorWrites 0 0 43 34
+1 2 124 osInterruptCount12 1 0 39 31
+1 2 191 dbmsNumberOfLogicalReadsFromDisk 2 0 2 0
+1 2 200 dbmsReads 2 0 2 0
+1 2 201 dbmsPhysicalReadsMB 2 0 2 0
+1 2 87 cpu_idl (core #21) 0 7 22 43
+1 2 169 dbmsNumberOfDataReads 2 0 2 0
+1 2 145 osNumberOfProcessesCurrentlyRunning 0 6 16 20
+1 2 5 cpu_usr (core #3) 0 1 50 41
+1 2 123 osInterruptCount11 2 2 30 28
+1 2 117 osInterruptCount5 2 1 41 29
+1 2 144 osNumberOfProcessesCreated 10 2 15 5
+1 2 127 osInterruptCount15 1 0 41 39
+1 2 32 cpu_usr (core #30) 1 1 4 29
+1 2 4 cpu_usr (core #2) 1 0 47 40
+1 2 165 dbmsThreadsRunning 1 0 29 21
+1 2 24 cpu_usr (core #22) 0 0 6 34
+1 2 94 cpu_idl (core #28) 2 1 6 40
+1 2 176 dbmsNumberOfRowInsertRequests 2 0 2 0
+1 2 48 cpu_sys (core #14) 0 9 11 25
+1 2 6 cpu_usr (core #4) 1 1 46 38
+1 2 10 cpu_usr (core #8) 0 1 46 28
+1 2 162 dbmsDataPages 2 6 3 7
+1 2 101 AvgCpuIdle 0 1 43 48
+1 2 73 cpu_idl (core #7) 0 4 21 49
+1 2 93 cpu_idl (core #27) 0 5 17 47
+1 2 49 cpu_sys (core #15) 0 3 20 22
+1 2 154 osNetworkRecvKB 4 9 49 45
+1 2 59 cpu_sys (core #25) 0 1 4 33
+1 2 100 AvgCpuSys 1 2 42 46
+1 2 91 cpu_idl (core #25) 0 2 11 48
+1 2 135 osInterruptCount23 11 29 43 39
+1 2 71 cpu_idl (core #5) 4 16 36 46
+1 2 111 osCountOfInterruptsServicedSinceBootTime 0 5 24 29
+1 2 106 osNumberOfContextSwitches 2 8 51 49
+1 2 99 AvgCpuUser 1 3 54 55
+1 2 77 cpu_idl (core #11) 3 7 40 39
+1 2 38 cpu_sys (core #4) 1 1 17 26
+1 2 104 AvgCpuSiq 1 4 41 36
+1 2 29 cpu_usr (core #27) 0 3 20 43
+1 2 171 dbmsNumberOfLogWriteRequests 2 0 2 0
+1 2 187 dbmsBufferPoolWrites 2 0 2 0
+1 2 75 cpu_idl (core #9) 7 9 51 46
+1 2 69 cpu_idl (core #3) 7 19 39 40
+1 2 167 dbmsLogWritesMB 2 0 2 0
+1 2 43 cpu_sys (core #9) 0 2 26 28
+1 2 61 cpu_sys (core #27) 0 1 9 30
+1 2 83 cpu_idl (core #17) 1 9 37 44
+1 2 172 dbmsNumberOfFysncLogWrites 2 0 2 0
+1 2 79 cpu_idl (core #13) 9 8 44 33
+1 2 27 cpu_usr (core #25) 1 1 13 38
+1 2 115 osInterruptCount3 6 3 26 24
+1 2 45 cpu_sys (core #11) 0 2 12 22
+1 2 39 cpu_sys (core #5) 1 2 20 27
+1 2 168 dbmsNumberOfPhysicalLogWrites 2 0 2 0
+1 2 155 dbmsMeasuredCPU 1 1 26 31
+1 2 19 cpu_usr (core #17) 2 5 46 36
+1 2 57 cpu_sys (core #23) 0 4 18 26
+1 2 48 cpu_sys (core #14) 0 1 11 25
+1 2 124 osInterruptCount12 2 0 39 31
+1 2 191 dbmsNumberOfLogicalReadsFromDisk 2 0 2 0
+1 2 200 dbmsReads 2 0 2 0
+1 2 41 cpu_sys (core #7) 5 1 13 28
+1 2 63 cpu_sys (core #29) 2 3 7 35
+1 2 51 cpu_sys (core #17) 0 5 20 27
+1 2 126 osInterruptCount14 3 1 38 26
+1 2 13 cpu_usr (core #11) 1 3 35 38
+1 2 7 cpu_usr (core #5) 6 14 42 40
+1 2 47 cpu_sys (core #13) 1 3 24 23
+1 2 65 cpu_sys (core #31) 0 1 7 29
+1 2 11 cpu_usr (core #9) 6 16 47 38
+1 2 201 dbmsPhysicalReadsMB 2 0 2 0
+1 2 169 dbmsNumberOfDataReads 2 0 2 0
+1 2 53 cpu_sys (core #19) 1 3 7 28
+1 2 123 osInterruptCount11 6 5 30 28
+1 2 28 cpu_usr (core #26) 0 1 5 28
+1 2 15 cpu_usr (core #13) 2 8 41 38
+1 2 56 cpu_sys (core #22) 0 1 1 33
+1 2 129 osInterruptCount17 1 6 29 25
+1 2 163 dbmsFreePages 0 7 45 37
+1 2 55 cpu_sys (core #21) 2 1 13 26
+1 2 9 cpu_usr (core #7) 1 17 29 49
+1 2 8 cpu_usr (core #6) 0 8 45 36
+1 2 76 cpu_idl (core #10) 1 0 41 38
+1 2 92 cpu_idl (core #26) 0 1 5 43
+1 2 122 osInterruptCount10 6 4 37 29
+1 2 80 cpu_idl (core #14) 2 1 43 36
+1 2 50 cpu_sys (core #16) 0 1 12 19
+1 2 119 osInterruptCount7 8 13 39 37
+1 2 145 osNumberOfProcessesCurrentlyRunning 0 5 16 20
+1 2 78 cpu_idl (core #12) 0 1 41 39
+1 2 130 osInterruptCount18 2 3 29 26
+1 2 146 osDiskUtilization 4 19 34 33
+1 2 82 cpu_idl (core #16) 0 5 45 35
+1 2 64 cpu_sys (core #30) 0 2 1 31
+1 2 5 cpu_usr (core #3) 1 12 50 41
+1 2 175 dbmsNumberOfNextRowReadRequests 1 4 2 4
+1 2 12 cpu_usr (core #10) 2 0 42 25
+1 2 24 cpu_usr (core #22) 0 4 6 34
+1 2 60 cpu_sys (core #26) 0 2 0 32
+1 2 161 dbmsDirtyPages 2 2 5 7
+1 2 18 cpu_usr (core #16) 1 8 44 25
+1 2 36 cpu_sys (core #2) 8 3 18 30
+1 2 74 cpu_idl (core #8) 1 5 43 37
+1 2 125 osInterruptCount13 1 1 26 25
+1 2 89 cpu_idl (core #23) 2 8 42 43
+1 2 97 cpu_idl (core #31) 0 9 23 45
+1 2 14 cpu_usr (core #12) 0 4 48 29
+1 2 98 cpu_idl (core #32) 0 2 6 44
+1 2 23 cpu_usr (core #21) 0 4 26 35
+1 2 96 cpu_idl (core #30) 0 3 3 43
+1 2 102 AvgCpuWai 42 40 54 48
+1 2 109 osAllocatedFileHandlers 2 4 6 4
+1 2 16 cpu_usr (core #14) 2 1 47 28
+1 2 10 cpu_usr (core #8) 1 8 46 28
+1 2 52 cpu_sys (core #18) 0 5 1 34
+1 2 37 cpu_sys (core #3) 0 3 24 24
+1 2 25 cpu_usr (core #23) 5 15 46 38
+1 2 86 cpu_idl (core #20) 0 2 1 47
+1 2 22 cpu_usr (core #20) 1 3 6 35
+1 2 116 osInterruptCount4 44 38 50 43
+1 2 34 cpu_usr (core #32) 1 4 7 34
+1 2 195 dbmsRollbackHandler 1 0 2 0
+1 2 146 osDiskUtilization 1 1 34 33
+1 2 5 cpu_usr (core #3) 3 0 50 41
+1 2 176 dbmsNumberOfRowInsertRequests 1 0 2 0
+1 2 194 dbmsRolledbackCommands 1 0 2 0
+1 2 156 dbmsChangedRows 1 0 2 0
+1 2 67 cpu_idl (core #1) 0 1 21 44
+1 2 187 dbmsBufferPoolWrites 1 0 2 0
+1 2 165 dbmsThreadsRunning 7 0 29 21
+1 2 110 osAllocatedINodes 0 0 13 19
+1 2 20 cpu_usr (core #18) 4 6 4 36
+1 2 75 cpu_idl (core #9) 0 1 51 46
+1 2 81 cpu_idl (core #15) 0 0 42 49
+1 2 71 cpu_idl (core #5) 1 1 36 46
+1 2 87 cpu_idl (core #21) 0 0 22 43
+1 2 106 osNumberOfContextSwitches 0 2 51 49
+1 2 153 osNetworkSendKB 0 3 52 46
+1 2 135 osInterruptCount23 1 4 43 39
+1 2 104 AvgCpuSiq 0 2 41 36
+1 2 79 cpu_idl (core #13) 0 1 44 33
+1 2 83 cpu_idl (core #17) 0 2 37 44
+1 2 21 cpu_usr (core #19) 0 1 14 36
+1 2 171 dbmsNumberOfLogWriteRequests 1 0 2 0
+1 2 73 cpu_idl (core #7) 0 1 21 49
+1 2 130 osInterruptCount18 2 0 29 26
+1 2 85 cpu_idl (core #19) 0 0 15 45
+1 2 77 cpu_idl (core #11) 0 0 40 39
+1 2 3 cpu_usr (core #1) 1 0 29 43
+1 2 167 dbmsLogWritesMB 1 0 2 0
+1 2 172 dbmsNumberOfFysncLogWrites 2 0 2 0
+1 2 131 osInterruptCount19 0 1 57 48
+1 2 168 dbmsNumberOfPhysicalLogWrites 2 0 2 0
+1 2 69 cpu_idl (core #3) 0 0 39 40
+1 2 27 cpu_usr (core #25) 1 1 13 38
+1 2 25 cpu_usr (core #23) 1 1 46 38
+1 2 23 cpu_usr (core #21) 0 0 26 35
+1 2 17 cpu_usr (core #15) 1 0 51 42
+1 2 101 AvgCpuIdle 0 1 43 48
+1 2 91 cpu_idl (core #25) 0 2 11 48
+1 2 123 osInterruptCount11 0 0 30 28
+1 2 132 osInterruptCount20 1 0 53 44
+1 2 7 cpu_usr (core #5) 1 1 42 40
+1 2 99 AvgCpuUser 1 0 54 55
+1 2 19 cpu_usr (core #17) 1 1 46 36
+1 2 15 cpu_usr (core #13) 0 1 41 38
+1 2 9 cpu_usr (core #7) 1 1 29 49
+1 2 13 cpu_usr (core #11) 0 1 35 38
+1 2 125 osInterruptCount13 0 1 26 25
+1 2 95 cpu_idl (core #29) 0 1 12 51
+1 2 116 osInterruptCount4 5 9 50 43
+1 2 178 dbmsNumberOfKeyBasedReadRequests 2 0 2 0
+1 2 133 osInterruptCount21 1 0 51 46
+1 2 60 cpu_sys (core #26) 0 1 0 32
+1 2 74 cpu_idl (core #8) 0 0 43 37
+1 2 169 dbmsNumberOfDataReads 2 0 2 0
+1 2 11 cpu_usr (core #9) 1 2 47 38
+1 2 201 dbmsPhysicalReadsMB 2 0 2 0
+1 2 97 cpu_idl (core #31) 0 0 23 45
+1 2 33 cpu_usr (core #31) 0 0 29 37
+1 2 84 cpu_idl (core #18) 3 18 3 49
+1 2 124 osInterruptCount12 1 0 39 31
+1 2 126 osInterruptCount14 1 0 38 26
+1 2 170 dbmsNumberOfDataWrites 2 0 2 0
+1 2 122 osInterruptCount10 2 0 37 29
+1 2 191 dbmsNumberOfLogicalReadsFromDisk 2 0 2 0
+1 2 200 dbmsReads 2 0 2 0
+1 2 128 osInterruptCount16 2 1 41 29
+1 2 163 dbmsFreePages 7 2 45 37
+1 2 102 AvgCpuWai 0 2 54 48
+1 2 31 cpu_usr (core #29) 0 0 13 37
+1 2 182 dbmsPageWritesMB 1 0 2 0
+1 2 45 cpu_sys (core #11) 0 2 12 22
+1 2 92 cpu_idl (core #26) 2 1 5 43
+1 2 142 osNumberOfSwapInSinceLastBoot 0 0 0 0
+1 2 60 cpu_sys (core #26) 0 0 0 32
+1 2 88 cpu_idl (core #22) 2 1 4 50
+1 2 100 AvgCpuSys 0 0 42 46
+1 2 94 cpu_idl (core #28) 2 1 6 40
+1 2 98 cpu_idl (core #32) 2 3 6 44
+1 2 54 cpu_sys (core #20) 0 3 0 32
+1 2 78 cpu_idl (core #12) 0 2 41 39
+1 2 82 cpu_idl (core #16) 3 2 45 35
+1 2 44 cpu_sys (core #10) 0 0 13 26
+1 2 46 cpu_sys (core #12) 0 3 9 25
+1 2 96 cpu_idl (core #30) 1 1 3 43
+1 2 41 cpu_sys (core #7) 0 0 13 28
+1 2 80 cpu_idl (core #14) 0 1 43 36
+1 2 40 cpu_sys (core #6) 0 1 8 20
+1 2 63 cpu_sys (core #29) 0 0 7 35
+1 2 64 cpu_sys (core #30) 0 0 1 31
+1 2 56 cpu_sys (core #22) 0 0 1 33
+1 2 57 cpu_sys (core #23) 0 0 18 26
+1 2 86 cpu_idl (core #20) 0 1 1 47
+1 2 90 cpu_idl (core #24) 3 2 6 52
+1 2 76 cpu_idl (core #10) 1 0 41 38
+1 2 47 cpu_sys (core #13) 0 0 24 23
+1 2 38 cpu_sys (core #4) 0 0 17 26
+1 2 72 cpu_idl (core #6) 0 1 46 50
+1 2 74 cpu_idl (core #8) 0 0 43 37
+1 2 66 cpu_sys (core #32) 0 1 0 29
+1 2 70 cpu_idl (core #4) 1 0 41 33
+1 2 52 cpu_sys (core #18) 0 0 1 34
+1 2 39 cpu_sys (core #5) 0 0 20 27
+1 2 45 cpu_sys (core #11) 0 0 12 22
+1 2 42 cpu_sys (core #8) 0 0 20 23
+1 2 62 cpu_sys (core #28) 0 0 1 34
+1 2 110 osAllocatedINodes 0 0 13 19
+1 2 84 cpu_idl (core #18) 1 1 3 49
+1 2 35 cpu_sys (core #1) 0 0 12 37
+1 2 55 cpu_sys (core #21) 0 0 13 26
+1 2 58 cpu_sys (core #24) 0 0 1 33
+1 2 50 cpu_sys (core #16) 0 0 12 19
+1 2 101 AvgCpuIdle 0 0 43 48
+1 2 36 cpu_sys (core #2) 0 2 18 30
+1 2 61 cpu_sys (core #27) 0 1 9 30
+1 2 43 cpu_sys (core #9) 0 0 26 28
+1 2 53 cpu_sys (core #19) 0 1 7 28
+1 2 49 cpu_sys (core #15) 0 2 20 22
+1 2 37 cpu_sys (core #3) 0 5 24 24
+1 2 65 cpu_sys (core #31) 0 1 7 29
+1 2 59 cpu_sys (core #25) 0 1 4 33
+1 2 48 cpu_sys (core #14) 0 9 11 25
+1 2 68 cpu_idl (core #2) 3 0 47 46
+1 2 51 cpu_sys (core #17) 0 0 20 27
+1 2 89 cpu_idl (core #23) 3 0 42 43
+1 2 87 cpu_idl (core #21) 1 0 22 43
+1 2 85 cpu_idl (core #19) 1 1 15 45
+1 2 155 dbmsMeasuredCPU 1 1 26 31
+1 2 93 cpu_idl (core #27) 0 1 17 47
+1 2 148 osUsedSwapSpace 0 9 0 9
+1 2 147 osFreeSwapSpace 0 9 0 9
+1 2 79 cpu_idl (core #13) 0 3 44 33
+1 2 109 osAllocatedFileHandlers 0 0 6 4
+1 2 95 cpu_idl (core #29) 0 1 12 51
+1 2 97 cpu_idl (core #31) 1 0 23 45
+1 2 77 cpu_idl (core #11) 3 1 40 39
+1 2 75 cpu_idl (core #9) 1 1 51 46
+1 2 91 cpu_idl (core #25) 3 1 11 48
+1 2 81 cpu_idl (core #15) 1 0 42 49
+1 2 69 cpu_idl (core #3) 1 0 39 40
+1 2 83 cpu_idl (core #17) 3 0 37 44
+1 2 73 cpu_idl (core #7) 3 0 21 49
+1 2 124 osInterruptCount12 1 0 39 31
+1 2 130 osInterruptCount18 4 0 29 26
+1 2 126 osInterruptCount14 2 0 38 26
+1 2 71 cpu_idl (core #5) 1 0 36 46
+1 2 102 AvgCpuWai 0 1 54 48
+1 2 67 cpu_idl (core #1) 1 0 21 44
+1 2 4 cpu_usr (core #2) 21 2 47 40
+1 2 20 cpu_usr (core #18) 3 0 4 36
+1 2 24 cpu_usr (core #22) 6 26 6 34
+1 2 18 cpu_usr (core #16) 27 6 44 25
+1 2 15 cpu_usr (core #13) 1 0 41 38
+1 2 34 cpu_usr (core #32) 7 5 7 34
+1 2 9 cpu_usr (core #7) 1 15 29 49
+1 2 116 osInterruptCount4 23 17 50 43
+1 2 7 cpu_usr (core #5) 1 1 42 40
+1 2 131 osInterruptCount19 9 3 57 48
+1 2 3 cpu_usr (core #1) 1 7 29 43
+1 2 123 osInterruptCount11 7 11 30 28
+1 2 128 osInterruptCount16 8 0 41 29
+1 2 31 cpu_usr (core #29) 0 7 13 37
+1 2 115 osInterruptCount3 1 1 26 24
+1 2 11 cpu_usr (core #9) 2 5 47 38
+1 2 151 osNumberOfMajorPageFaults 0 1 0 1
+1 2 190 dbmsNumberOfLogicalReadRequests 1 0 2 0
+1 2 199 dbmsReadRequests 1 0 2 0
+1 2 16 cpu_usr (core #14) 3 3 47 28
+1 2 80 cpu_idl (core #14) 3 3 43 36
+1 2 17 cpu_usr (core #15) 1 0 51 42
+1 2 15 cpu_usr (core #13) 0 2 41 38
+1 2 27 cpu_usr (core #25) 1 1 13 38
+1 2 25 cpu_usr (core #23) 1 2 46 38
+1 2 131 osInterruptCount19 0 1 57 48
+1 2 13 cpu_usr (core #11) 1 1 35 38
+1 2 77 cpu_idl (core #11) 1 6 40 39
+1 2 9 cpu_usr (core #7) 1 1 29 49
+1 2 97 cpu_idl (core #31) 0 0 23 45
+1 2 89 cpu_idl (core #23) 1 3 42 43
+1 2 81 cpu_idl (core #15) 0 2 42 49
+1 2 91 cpu_idl (core #25) 0 2 11 48
+1 2 191 dbmsNumberOfLogicalReadsFromDisk 2 0 2 0
+1 2 200 dbmsReads 2 0 2 0
+1 2 123 osInterruptCount11 2 0 30 28
+1 2 201 dbmsPhysicalReadsMB 2 0 2 0
+1 2 169 dbmsNumberOfDataReads 2 0 2 0
+1 2 23 cpu_usr (core #21) 0 4 26 35
+1 2 104 AvgCpuSiq 0 2 41 36
+1 2 101 AvgCpuIdle 0 1 43 48
+1 2 135 osInterruptCount23 2 11 43 39
+1 2 95 cpu_idl (core #29) 0 2 12 51
+1 2 33 cpu_usr (core #31) 0 0 29 37
+1 2 31 cpu_usr (core #29) 0 1 13 37
+1 2 179 dbmsNumberOfNextKeyBasedReadRequests 2 0 2 0
+1 2 156 dbmsChangedRows 2 0 2 0
+1 2 52 cpu_sys (core #18) 1 16 1 34
+1 2 132 osInterruptCount20 1 2 53 44
+1 2 134 osInterruptCount22 1 1 53 48
+1 2 178 dbmsNumberOfKeyBasedReadRequests 2 0 2 0
+1 2 167 dbmsLogWritesMB 2 0 2 0
+1 2 187 dbmsBufferPoolWrites 2 0 2 0
+1 2 171 dbmsNumberOfLogWriteRequests 2 0 2 0
+1 2 73 cpu_idl (core #7) 0 8 21 49
+1 2 115 osInterruptCount3 3 1 26 24
+1 2 79 cpu_idl (core #13) 0 3 44 33
+1 2 145 osNumberOfProcessesCurrentlyRunning 0 4 16 20
+1 2 65 cpu_sys (core #31) 0 1 7 29
+1 2 133 osInterruptCount21 1 0 51 46
+1 2 69 cpu_idl (core #3) 4 12 39 40
+1 2 168 dbmsNumberOfPhysicalLogWrites 2 0 2 0
+1 2 41 cpu_sys (core #7) 1 1 13 28
+1 2 172 dbmsNumberOfFysncLogWrites 2 0 2 0
+1 2 87 cpu_idl (core #21) 0 4 22 43
+1 2 140 osNumberOfReadsIssued 1 1 33 24
+1 2 106 osNumberOfContextSwitches 1 6 51 49
+1 2 99 AvgCpuUser 1 2 54 55
+1 2 159 dbmsFlushedPages 1 0 2 0
+1 2 85 cpu_idl (core #19) 3 15 15 45
+1 2 128 osInterruptCount16 1 0 41 29
+1 2 21 cpu_usr (core #19) 0 1 14 36
+1 2 107 osNumberOfSectorReads 0 4 44 37
+1 2 155 dbmsMeasuredCPU 1 2 26 31
+1 2 5 cpu_usr (core #3) 0 1 50 41
+1 2 161 dbmsDirtyPages 2 2 5 7
+1 2 125 osInterruptCount13 1 3 26 25
+1 2 121 osInterruptCount9 1 3 40 30
+1 2 71 cpu_idl (core #5) 4 23 36 46
+1 2 152 osNumberOfMinorPageFaults 0 2 16 17
+1 2 20 cpu_usr (core #18) 0 4 4 36
+1 2 45 cpu_sys (core #11) 0 2 12 22
+1 2 34 cpu_usr (core #32) 1 2 7 34
+1 2 118 osInterruptCount6 2 2 41 31
+1 2 129 osInterruptCount17 1 3 29 25
+1 2 98 cpu_idl (core #32) 0 2 6 44
+1 2 68 cpu_idl (core #2) 1 31 47 46
+1 2 149 osNumberOfAllocatedPage 0 4 20 22
+1 2 14 cpu_usr (core #12) 0 1 48 29
+1 2 58 cpu_sys (core #24) 0 1 1 33
+1 2 78 cpu_idl (core #12) 0 0 41 39
+1 2 32 cpu_usr (core #30) 2 9 4 29
+1 2 60 cpu_sys (core #26) 0 1 0 32
+1 2 176 dbmsNumberOfRowInsertRequests 2 0 2 0
+1 2 184 dbmsDoubleWritesOperations 1 0 2 0
+1 2 63 cpu_sys (core #29) 1 1 7 35
+1 2 96 cpu_idl (core #30) 3 22 3 43
+1 2 150 osNumberOfFreePages 0 2 18 23
+1 2 100 AvgCpuSys 1 2 42 46
+1 2 122 osInterruptCount10 2 0 37 29
+1 2 70 cpu_idl (core #4) 0 1 41 33
+1 2 28 cpu_usr (core #26) 0 1 5 28
+1 2 84 cpu_idl (core #18) 0 46 3 49
+1 2 102 AvgCpuWai 19 20 54 48
+1 2 24 cpu_usr (core #22) 0 0 6 34
+1 2 82 cpu_idl (core #16) 0 1 45 35
+1 2 166 dbmsTotalWritesMB 1 0 2 0
+1 2 74 cpu_idl (core #8) 0 0 43 37
+1 2 182 dbmsPageWritesMB 1 0 2 0
+1 2 44 cpu_sys (core #10) 0 1 13 26
+1 2 183 dbmsDoublePageWritesMB 1 0 2 0
+1 2 72 cpu_idl (core #6) 0 0 46 50
+1 2 117 osInterruptCount5 10 0 41 29
+1 2 4 cpu_usr (core #2) 1 4 47 40
+1 2 8 cpu_usr (core #6) 0 2 45 36
+1 2 88 cpu_idl (core #22) 0 0 4 50
+1 2 59 cpu_sys (core #25) 0 1 4 33
+1 2 170 dbmsNumberOfDataWrites 1 0 2 0
+1 2 49 cpu_sys (core #15) 0 2 20 22
+1 2 148 osUsedSwapSpace 0 0 0 9
+1 2 35 cpu_sys (core #1) 1 1 12 37
+1 2 36 cpu_sys (core #2) 0 1 18 30
+1 2 147 osFreeSwapSpace 0 1 0 9
+1 2 28 cpu_usr (core #26) 1 0 5 28
+1 2 146 osDiskUtilization 1 1 34 33
+1 2 41 cpu_sys (core #7) 1 1 13 28
+1 2 37 cpu_sys (core #3) 0 1 24 24
+1 2 67 cpu_idl (core #1) 0 1 21 44
+1 2 100 AvgCpuSys 1 3 42 46
+1 2 101 AvgCpuIdle 0 0 43 48
+1 2 47 cpu_sys (core #13) 0 1 24 23
+1 2 69 cpu_idl (core #3) 0 1 39 40
+1 2 131 osInterruptCount19 1 4 57 48
+1 2 39 cpu_sys (core #5) 0 1 20 27
+1 2 68 cpu_idl (core #2) 0 0 47 46
+1 2 19 cpu_usr (core #17) 1 1 46 36
+1 2 95 cpu_idl (core #29) 0 2 12 51
+1 2 75 cpu_idl (core #9) 0 3 51 46
+1 2 104 AvgCpuSiq 1 3 41 36
+1 2 93 cpu_idl (core #27) 0 1 17 47
+1 2 73 cpu_idl (core #7) 0 1 21 49
+1 2 99 AvgCpuUser 1 1 54 55
+1 2 77 cpu_idl (core #11) 0 2 40 39
+1 2 106 osNumberOfContextSwitches 0 2 51 49
+1 2 5 cpu_usr (core #3) 0 1 50 41
+1 2 71 cpu_idl (core #5) 1 1 36 46
+1 2 33 cpu_usr (core #31) 0 3 29 37
+1 2 153 osNetworkSendKB 1 3 52 46
+1 2 97 cpu_idl (core #31) 0 8 23 45
+1 2 134 osInterruptCount22 1 2 53 48
+1 2 79 cpu_idl (core #13) 0 1 44 33
+1 2 85 cpu_idl (core #19) 0 6 15 45
+1 2 7 cpu_usr (core #5) 2 1 42 40
+1 2 144 osNumberOfProcessesCreated 10 2 15 5
+1 2 124 osInterruptCount12 1 0 39 31
+1 2 187 dbmsBufferPoolWrites 2 0 2 0
+1 2 83 cpu_idl (core #17) 0 2 37 44
+1 2 141 osNumberOfWritesCompleted 1 6 45 43
+1 2 140 osNumberOfReadsIssued 1 0 33 24
+1 2 145 osNumberOfProcessesCurrentlyRunning 0 2 16 20
+1 2 156 dbmsChangedRows 2 0 2 0
+1 2 109 osAllocatedFileHandlers 2 3 6 4
+1 2 91 cpu_idl (core #25) 0 2 11 48
+1 2 92 cpu_idl (core #26) 2 1 5 43
+1 2 129 osInterruptCount17 1 3 29 25
+1 2 87 cpu_idl (core #21) 0 0 22 43
+1 2 60 cpu_sys (core #26) 0 3 0 32
+1 2 179 dbmsNumberOfNextKeyBasedReadRequests 2 0 2 0
+1 2 178 dbmsNumberOfKeyBasedReadRequests 2 0 2 0
+1 2 102 AvgCpuWai 0 2 54 48
+1 2 135 osInterruptCount23 6 19 43 39
+1 2 168 dbmsNumberOfPhysicalLogWrites 2 0 2 0
+1 2 13 cpu_usr (core #11) 0 1 35 38
+1 2 172 dbmsNumberOfFysncLogWrites 2 0 2 0
+1 2 21 cpu_usr (core #19) 0 2 14 36
+1 2 171 dbmsNumberOfLogWriteRequests 2 0 2 0
+1 2 9 cpu_usr (core #7) 1 1 29 49
+1 2 190 dbmsNumberOfLogicalReadRequests 2 0 2 0
+1 2 199 dbmsReadRequests 2 0 2 0
+1 2 154 osNetworkRecvKB 2 2 49 45
+1 2 15 cpu_usr (core #13) 0 2 41 38
+1 2 193 dbmsCommittedCommands 2 0 2 0
+1 2 3 cpu_usr (core #1) 1 0 29 43
+1 2 11 cpu_usr (core #9) 1 3 47 38
+1 2 132 osInterruptCount20 2 2 53 44
+1 2 84 cpu_idl (core #18) 0 1 3 49
+1 2 82 cpu_idl (core #16) 0 1 45 35
+1 2 31 cpu_usr (core #29) 0 3 13 37
+1 2 89 cpu_idl (core #23) 1 2 42 43
+1 2 167 dbmsLogWritesMB 2 0 2 0
+1 2 133 osInterruptCount21 2 1 51 46
+1 2 120 osInterruptCount8 3 0 41 34
+1 2 107 osNumberOfSectorReads 0 1 44 37
+1 2 52 cpu_sys (core #18) 0 3 1 34
+1 2 119 osInterruptCount7 2 1 39 37
+1 2 176 dbmsNumberOfRowInsertRequests 2 0 2 0
+1 2 57 cpu_sys (core #23) 0 0 18 26
+1 2 118 osInterruptCount6 1 0 41 31
+1 2 27 cpu_usr (core #25) 1 1 13 38
+1 2 191 dbmsNumberOfLogicalReadsFromDisk 2 0 2 0
+1 2 200 dbmsReads 2 0 2 0
+1 2 23 cpu_usr (core #21) 0 0 26 35
+1 2 201 dbmsPhysicalReadsMB 2 0 2 0
+1 2 169 dbmsNumberOfDataReads 2 0 2 0
+1 2 116 osInterruptCount4 6 5 50 43
+1 2 160 dbmsCurrentDirtyPages 2 1 57 45
+1 2 72 cpu_idl (core #6) 0 0 46 50
+1 2 115 osInterruptCount3 2 0 26 24
+1 2 74 cpu_idl (core #8) 0 0 43 37
+1 2 32 cpu_usr (core #30) 1 0 4 29
+1 2 53 cpu_sys (core #19) 0 1 7 28
+1 2 88 cpu_idl (core #22) 0 0 4 50
+1 2 14 cpu_usr (core #12) 0 1 48 29
+1 2 163 dbmsFreePages 2 1 45 37
+1 2 159 dbmsFlushedPages 2 0 2 0
+1 2 10 cpu_usr (core #8) 0 1 46 28
+1 2 20 cpu_usr (core #18) 0 0 4 36
+1 2 127 osInterruptCount15 1 0 41 39
+1 2 125 osInterruptCount13 1 4 26 25
