@@ -1,4 +1,4 @@
-#%%
+# %%
 
 import heapq
 from typing_extensions import final
@@ -14,9 +14,9 @@ import pprint
 
 num_case = 10
 num_samples = 11
-warehouse = '500'
+warehouse = "500"
 
-with open("converted_data_"+warehouse+"/causes.csv", 'r') as f:
+with open("converted_data_" + warehouse + "/causes.csv", "r") as f:
     data = list(csv.reader(f, delimiter=","))
 causes = data[0]
 correct = []
@@ -25,28 +25,29 @@ incorrect_case = [0 for _ in range(10)]
 total_case = [0 for _ in range(10)]
 
 for batch in range(num_samples):
-
     train_sample = [batch]
     test_sample = list(range(num_samples))
     for x in train_sample:
         test_sample.remove(x)
-    
+
     for i in range(num_case):
         for j in test_sample:
-            with open('single/explanation/{}_{}_{}.txt'.format(batch,i,j), 'rb') as fe:
+            with open(
+                "single/explanation/{}_{}_{}.txt".format(batch, i, j), "rb"
+            ) as fe:
                 explanation = pickle.load(fe)
 
             explanation = [x for x in explanation if x != 0]
-            explanation.sort(key=lambda x:-x[1])
-            #print(explanation)
-            total_case[i]+=1
+            explanation.sort(key=lambda x: -x[1])
+            # print(explanation)
+            total_case[i] += 1
             if explanation[0][0] == causes[i]:
-                correct.append([i,batch,j])
+                correct.append([i, batch, j])
                 pprint.pprint("Correct case:{} train:{} test:{} ".format(i, batch, j))
             else:
-                incorrect.append([i,batch,j])
+                incorrect.append([i, batch, j])
                 pprint.pprint("Incorrect case:{} train:{} test:{} ".format(i, batch, j))
-                incorrect_case[i]+=1
+                incorrect_case[i] += 1
 print("correct: ")
 pprint.pprint(correct)
 print("incorrect: ")
