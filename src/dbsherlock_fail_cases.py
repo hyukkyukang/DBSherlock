@@ -1,15 +1,5 @@
-# %%
-
-import heapq
-from typing_extensions import final
-import numpy as np
-from matplotlib import pyplot as plt
 import csv
 import pickle
-import statistics as stat
-import dbsherlock_predicate_generation as p
-import dbsherlock_single_causal_model as s
-import dbsherlock_merged_causal_model as m
 import pprint
 
 num_case = 10

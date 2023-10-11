@@ -1,16 +1,8 @@
 # %%
 
-import heapq
-from typing_extensions import final
-import numpy as np
-from matplotlib import pyplot as plt
 import csv
 import math
 import pickle
-import statistics as stat
-import dbsherlock_predicate_generation as p
-
-import time
 
 warehouse = str(500)
 inf = math.inf

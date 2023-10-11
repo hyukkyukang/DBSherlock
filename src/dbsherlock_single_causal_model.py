@@ -1,8 +1,8 @@
-import dbsherlock_predicate_generation as p
 import heapq
+
 import numpy as np
-from matplotlib import pyplot as plt
-import csv
+
+import src.dbsherlock_predicate_generation as p
 
 
 # Prediction

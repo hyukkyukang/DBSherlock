@@ -1,11 +1,8 @@
-import heapq
-from io import DEFAULT_BUFFER_SIZE
-import numpy as np
-from matplotlib import pyplot as plt
 import csv
 import math
-import time
 import pickle
+
+import numpy as np
 from numpy.core.fromnumeric import sort
 from numpy.lib.function_base import average
 
