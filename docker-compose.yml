@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+    DBSherlock:
+        shm_size: 4gb
+        image: ubuntu:22.04
+        container_name: DBSherlock
+        stdin_open: true
+        tty: true
+        network_mode: "host"
+        environment:
+            - TZ=Asia/Seoul
+        volumes:
+            - /etc/timezone:/etc/timezone:ro 
+            - ./:/root/dbsherlock
+            - /mnt/sdd/hkkang/dbsherlock:/mnt/md0/hkkang/dbsherlock
