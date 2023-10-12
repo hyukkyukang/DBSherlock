@@ -47,11 +47,7 @@ class predicate:
 
 
 def load_data(warehouse, i, j):
-    file_path = (
-        "data/converted_data_"
-        + warehouse
-        + "/test_datasets/data/{}_{}.csv".format(i, j)
-    )
+    file_path = f"data/converted_data_{warehouse}/test_datasets/data/{i}_{j}.csv"
     with open(file_path, "r") as f:
         data = list(csv.reader(f, delimiter=","))
     temp = np.array(data, dtype=float)

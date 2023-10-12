@@ -193,7 +193,7 @@ for batch in range(1, 2):
                 idxes = [
                     x for x in range(len(explanation)) if explanation[x][0] == causes[k]
                 ]
-                if len(idxes) is not 0:
+                if len(idxes) != 0:
                     idx = idxes[0]
                     recall[k][i].append(explanation[idx][3])
                     precision[k][i].append(explanation[idx][2])

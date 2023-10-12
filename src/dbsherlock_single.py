@@ -14,7 +14,7 @@ construct = 0
 save = 0
 
 
-with open("converted_data_" + warehouse + "/causes.csv", "r") as f:
+with open("data/converted_data_" + warehouse + "/causes.csv", "r") as f:
     data = list(csv.reader(f, delimiter=","))
 causes = data[0]
 
@@ -76,7 +76,7 @@ if construct:
     # with open('all_causal_models.txt', 'wb') as fa:
     # pickle.dump(all_causal_models, fa)
 else:
-    with open("single/all_causal_models.txt", "rb") as fa:
+    with open("etc/single/all_causal_models.txt", "rb") as fa:
         all_causal_models = pickle.load(fa)
 
 filtered_count = [[] for _ in range(num_samples)]
@@ -190,7 +190,7 @@ for batch in range(5, 6):
                 idxes = [
                     x for x in range(len(explanation)) if explanation[x][0] == causes[k]
                 ]
-                if len(idxes) is not 0:
+                if len(idxes) != 0:
                     idx = idxes[0]
                     recall[k][i].append(explanation[idx][3])
                     precision[k][i].append(explanation[idx][2])
@@ -239,6 +239,3 @@ plt.legend()
 plt.title("Experiment 1: Accuracy of Single Causal Models")
 
 plt.show()
-
-
-# %%

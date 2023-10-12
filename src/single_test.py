@@ -68,5 +68,3 @@ plt.xticks(x, causes, rotation=70)
 plt.yticks(np.arange(90, step=10))
 plt.legend()
 plt.show()
-
-# %%
