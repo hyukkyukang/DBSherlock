@@ -46,6 +46,8 @@ python src/scripts/data/convert_data.py --input data/original_dataset/dbsherlock
 --out_dir data/converted_dataset \
 --prefix tpce_3000
 ```
+### How to load the dataset in Python
+Please refer to [src/data/README.md](src/data/README.md)
 
 ## Run Experiments
 ```bash

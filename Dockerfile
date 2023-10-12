@@ -28,7 +28,3 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
 # Install Locale
 RUN apt-get install language-pack-en -y
-
-# Export environment variables
-RUN echo "export SETUPTOOLS_USE_DISTUTILS=stdlib" >> ~/.bashrc
-RUN echo "export PYTHONPATH=./:${PYTHONPATH}" >> ~/.bashrc
