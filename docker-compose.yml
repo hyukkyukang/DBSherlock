@@ -3,7 +3,7 @@ version: "3"
 services:
     DBSherlock:
         shm_size: 4gb
-        image: ubuntu:22.04
+        image: hyukkyukang/dbsherlock:latest
         container_name: DBSherlock
         stdin_open: true
         tty: true
