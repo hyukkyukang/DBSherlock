@@ -1,2 +1,4 @@
-numpy
-matplotlib
+numpy==1.26.0
+matplotlib==3.8.0
+scipy==1.11.3
+hkkang_utils>=0.2.17
