@@ -10,7 +10,7 @@ from src.utils import calculate_mean_conf
 warehouse = str(500)
 
 # for debugging
-construct = 0
+construct = 1
 save = 0
 
 

@@ -58,7 +58,7 @@ def load_data(warehouse, i, j):
     _, num_attr = temp.shape
 
     with open(
-        "converted_data_"
+        "data/converted_data_"
         + warehouse
         + "/test_datasets/field_names/{}_{}.csv".format(i, j),
         "r",
@@ -67,14 +67,16 @@ def load_data(warehouse, i, j):
     attr_name = data[0][2:]
 
     with open(
-        "converted_data_" + warehouse + "/abnormal_regions/{}_{}.csv".format(i, j), "r"
+        "data/converted_data_" + warehouse + "/abnormal_regions/{}_{}.csv".format(i, j),
+        "r",
     ) as f:
         data = list(csv.reader(f, delimiter=","))
 
     ab_index = np.array(data[0], dtype=int) - 1
 
     with open(
-        "converted_data_" + warehouse + "/normal_regions/{}_{}.csv".format(i, j), "r"
+        "data/converted_data_" + warehouse + "/normal_regions/{}_{}.csv".format(i, j),
+        "r",
     ) as f:
         data = list(csv.reader(f, delimiter=","))
 
