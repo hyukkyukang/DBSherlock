@@ -10,5 +10,7 @@ data_path = "data/converted_dataset/tpcc_16w_test.json"
 data_in_json = json.load(open(data_path, 'r'))
 
 # Load the dataset in AnomalyData format
-data = AnomalyData.from_dict(data=data_in_json)
+dataset = []
+for datum in data_in_json:
+    dataset.append(AnomalyData.from_dict(data=datum))
 ```
