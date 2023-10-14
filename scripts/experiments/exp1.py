@@ -3,6 +3,7 @@ import logging
 import os
 from typing import *
 
+import tqdm
 import hkkang_utils.file as file_utils
 
 from src.data.anomaly_data import AnomalyData
@@ -11,13 +12,51 @@ from src.model.dbsherlock import DBSherlock
 logger = logging.getLogger("Exp1")
 
 
-def main(data_path: str, output_dir: str) -> None:
+def main(
+    data_path: str,
+    output_dir: str,
+    total_case_num: int = 10,
+    num_sample_per_case: int = 11,
+    num_train_samples: int = 1,
+) -> None:
+    # Check arguments
+    assert (
+        num_train_samples <= num_sample_per_case
+    ), f"Number of train samples should be less than number of samples per case"
+
     # Load data
     data_in_json = file_utils.read_json_file(data_path)
     anomaly_data_list = [AnomalyData.from_dict(data=d) for d in data_in_json]
+
+    # Check number of data
+    assert (
+        len(anomaly_data_list) == total_case_num * num_sample_per_case
+    ), f"Number of data is less than {total_case_num}"
+
     # Create causal model
     dbsherlock = DBSherlock()
-    dbsherlock.create_causal_model(data=anomaly_data_list[0])
+
+    # Perform k-fold cross validation (But, for each case train with only one sample and test with the rest)
+    for sample_idx in range(num_sample_per_case):
+        for case_idx in range(total_case_num):
+            training_data = anomaly_data_list[
+                case_idx * num_sample_per_case + sample_idx
+            ]
+            indices = [idx for idx in range(num_sample_per_case) if idx != sample_idx]
+            testing_data_list = [
+                anomaly_data_list[case_idx * num_sample_per_case + idx]
+                for idx in indices
+            ]
+            # Create causal model
+            causal_model = dbsherlock.create_causal_model(data=training_data)
+            # Validate confidence
+            confidences = []
+            for testing_data in testing_data_list:
+                confidence = dbsherlock.compute_confidence(
+                    causal_model=causal_model, data=testing_data
+                )
+                confidences.append(confidence)
+
     raise NotImplementedError
 
 

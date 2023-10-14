@@ -245,40 +245,6 @@ class DBSherlock:
                 ]
         return predicate_as_dnf
 
-    def compute_confidence(
-        self, causal_model: CausalModel, partitions_by_attr: List[List[Partition]]
-    ) -> float:
-        """Compute the confidence of the causal model
-        Note: This should be called on partitions before filtering and filling the partitions
-        """
-        total_confidence = 0
-        for partitions in partitions_by_attr:
-            # Count the number of normal and abnormal partitions satisfying the predicate of causal model
-            num_normal_partitions = 0
-            num_abnormal_partitions = 0
-            num_valid_normal_partitions = 0
-            num_valid_abnormal_partitions = 0
-            # Count
-            for partition in partitions:
-                if partition.is_normal:
-                    num_normal_partitions += 1
-                    if causal_model.is_valid_partition(partition):
-                        num_valid_normal_partitions += 1
-                elif partition.is_abnormal:
-                    num_abnormal_partitions += 1
-                    if causal_model.is_valid_partition(partition):
-                        num_valid_abnormal_partitions += 1
-
-            # Compute confidence
-            covered_normal_ratio = num_valid_normal_partitions / num_normal_partitions
-            covered_abnormal_ratio = (
-                num_valid_abnormal_partitions / num_abnormal_partitions
-            )
-            confidence = covered_abnormal_ratio - covered_normal_ratio
-            # Aggregate
-            total_confidence += confidence
-        return total_confidence / len(partitions_by_attr)
-
     def create_causal_model(self, data: AnomalyData) -> CausalModel:
         # Create partitions
         partitions_by_attr: List[List[Partition]] = self.create_partitions(data)
@@ -325,3 +291,63 @@ class DBSherlock:
         )
 
         return causal_model
+
+    def compute_confidence(
+        self,
+        causal_model: CausalModel,
+        data: AnomalyData,
+    ) -> Tuple[float, float]:
+        """Compute the confidence of the causal model"""
+        # Create partitions
+        partitions_by_attr: List[List[Partition]] = self.create_partitions(data)
+        # Label partitions
+        partitions_labeled: List[List[Partition]] = []
+        for idx, partitions in enumerate(partitions_by_attr):
+            labeled_partitions: List[Partition] = self.label_parition(
+                values=data.valid_values_as_np[:, idx],
+                partitions=partitions,
+                normal_regions=data.valid_normal_regions,
+                abnormal_regions=data.valid_abnormal_regions,
+            )
+            partitions_labeled.append(labeled_partitions)
+
+        # Get only the partitions to be used for extracting predicates
+        partitions_to_use: List[List[Partition]] = list(
+            filter(self.is_to_extract_predicates, partitions_labeled)
+        )
+
+        total_confidence = 0
+        total_precision = 0
+        # TODO: average를 predicates 기준으로 해야함. partition에 대해서는 더 해줘야하는데, matlab 코드에서 line:532 참조 필요
+        for partitions in partitions_to_use:
+            # Count the number of normal and abnormal partitions satisfying the predicate of causal model
+            num_normal_partitions = 0
+            num_abnormal_partitions = 0
+            num_valid_normal_partitions = 0
+            num_valid_abnormal_partitions = 0
+            # Count
+            for partition in partitions:
+                if partition.is_normal:
+                    num_normal_partitions += 1
+                    if causal_model.is_valid_partition(partition):
+                        num_valid_normal_partitions += 1
+                elif partition.is_abnormal:
+                    num_abnormal_partitions += 1
+                    if causal_model.is_valid_partition(partition):
+                        num_valid_abnormal_partitions += 1
+
+            # Compute confidence
+            covered_normal_ratio = num_valid_normal_partitions / num_normal_partitions
+            covered_abnormal_ratio = (
+                num_valid_abnormal_partitions / num_abnormal_partitions
+            )
+            confidence = covered_abnormal_ratio - covered_normal_ratio
+            precision = covered_abnormal_ratio / (
+                covered_abnormal_ratio + covered_normal_ratio
+            )
+            # Aggregate
+            total_confidence += confidence
+            total_precision += precision
+        avg_total_precision = total_precision / len(partitions_to_use) * 100
+        avg_total_confidence = total_confidence / len(partitions_to_use) * 100
+        return avg_total_precision, avg_total_confidence

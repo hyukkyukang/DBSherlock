@@ -34,6 +34,7 @@ class CausalModel:
     predicates_dic: Dict[str, List[Predicate]]  # List of effective predicates
 
     def _do_satisfy_predicate(self, predicate: Predicate, partition: Partition) -> bool:
+        """Check if the partition satisfies the predicate"""
         if predicate.is_unary:
             if predicate.operator1 == ">":
                 return partition.min >= predicate.operand1
@@ -47,7 +48,9 @@ class CausalModel:
             )
 
     def is_valid_partition(self, partition: Partition) -> bool:
-        """Check if the partition is valid"""
+        """Check if the partition satisfies any of the effective predicates"""
+        if partition.attribute not in self.predicates_dic:
+            return False
         return any(
             self._do_satisfy_predicate(predicate, partition)
             for predicate in self.predicates_dic[partition.attribute]
