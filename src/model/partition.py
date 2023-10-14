@@ -5,7 +5,7 @@ import hkkang_utils.pattern as pattern_utils
 
 
 @data_utils.dataclass
-class Label(pattern_utils.SingletonABCMeta):
+class Label(metaclass=pattern_utils.SingletonABCMeta):
     pass
 
 
@@ -26,9 +26,11 @@ class Empty(Label):
 
 @data_utils.dataclass
 class Partition:
+    attribute: str
     max: float
     min: float
-    label: Optional[Label]
+    label: Label = data_utils.field(default=Empty)
+    values: List[float] = data_utils.field(default_factory=list)
 
     # Syntactic sugars
     @property

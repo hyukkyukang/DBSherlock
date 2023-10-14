@@ -30,19 +30,19 @@ wget -P data/original_dataset/ https://github.com/dongyoungy/dbsherlock-reproduc
 ### Data Convertion
 Convert TPCC 16w dataset to json format
 ```bash
-python src/scripts/data/convert_data.py --input data/original_dataset/dbsherlock_dataset_tpcc_16w.mat \
+python scripts/data/convert_data.py --input data/original_dataset/dbsherlock_dataset_tpcc_16w.mat \
 --out_dir data/converted_dataset \
 --prefix tpcc_16w
 ```
 Convert TPCC 500w dataset to json format
 ```bash
-python src/scripts/data/convert_data.py --input data/original_dataset/dbsherlock_dataset_tpcc_500w.mat \
+python scripts/data/convert_data.py --input data/original_dataset/dbsherlock_dataset_tpcc_500w.mat \
 --out_dir data/converted_dataset \
 --prefix tpcc_500w
 ```
 Convert TPCE 3000 dataset to json format
 ```bash
-python src/scripts/data/convert_data.py --input data/original_dataset/dbsherlock_dataset_tpce_3000.mat \
+python scripts/data/convert_data.py --input data/original_dataset/dbsherlock_dataset_tpce_3000.mat \
 --out_dir data/converted_dataset \
 --prefix tpce_3000
 ```
@@ -50,6 +50,7 @@ python src/scripts/data/convert_data.py --input data/original_dataset/dbsherlock
 Please refer to [src/data/README.md](src/data/README.md)
 
 ## Run Experiments
+### Experiment 1
 ```bash
-python scripts/
+python scripts/experiments/exp1.py
 ```

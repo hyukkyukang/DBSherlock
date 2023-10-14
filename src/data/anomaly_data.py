@@ -1,3 +1,4 @@
+import functools
 from typing import *
 
 import hkkang_utils.data as data_utils
@@ -12,11 +13,11 @@ class AnomalyData:
     normal_regions: List[int]  # list of normal region indices
     abnormal_regions: List[int]  # list of abnormal region indices
 
-    @property
+    @functools.cached_property
     def values_as_np(self) -> np.ndarray:
         return np.array(self.values)
 
-    @property
+    @functools.cached_property
     def valid_normal_regions(self) -> List[int]:
         """Get all region size"""
         if self.normal_regions:
@@ -25,7 +26,29 @@ class AnomalyData:
             i for i in range(len(self.attributes)) if i not in self.abnormal_regions
         ]
 
-    @property
+    @functools.cached_property
+    def valid_abnormal_regions(self) -> List[int]:
+        """Get all region size"""
+        return self.abnormal_regions
+
+    @functools.cached_property
+    def valid_attributes(self) -> List[str]:
+        return [self.attributes[i] for i in range(2, len(self.attributes))]
+
+    @functools.cached_property
+    def valid_values(self) -> np.ndarray:
+        """Get all values"""
+        tmp = []
+        for values_in_time in self.values:
+            tmp.append([values_in_time[i] for i in range(2, len(self.attributes))])
+        return tmp
+
+    @functools.cached_property
+    def valid_values_as_np(self) -> np.ndarray:
+        """Get all values"""
+        return np.array(self.valid_values)
+
+    @functools.cached_property
     def training_data(self) -> np.ndarray:
         """Get training data"""
         valid_regions = self.valid_normal_regions + self.abnormal_regions

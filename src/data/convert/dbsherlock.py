@@ -10,6 +10,11 @@ from src.data.anomaly_data import AnomalyData
 logger = logging.getLogger("DBSherlockDataConverter")
 
 
+def to_zero_based_index(indices: List[int]) -> List[int]:
+    assert all([i > 0 for i in indices]), f"Indices are already zero-based: {indices}"
+    return [i - 1 for i in indices]
+
+
 def np_region_to_list(region: np.ndarray) -> List[int]:
     if len(region):
         assert len(region) == 1, f"region shape: {region.shape}"
@@ -67,8 +72,8 @@ def process_dataset(
                     cause=cause,
                     attributes=attributes,
                     values=values.tolist(),
-                    normal_regions=np_region_to_list(n_reg),
-                    abnormal_regions=np_region_to_list(abn_reg),
+                    normal_regions=to_zero_based_index(np_region_to_list(n_reg)),
+                    abnormal_regions=to_zero_based_index(np_region_to_list(abn_reg)),
                 )
             )
 
