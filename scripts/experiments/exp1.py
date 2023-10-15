@@ -58,6 +58,7 @@ def main(
                 confidences.append(confidence)
 
     raise NotImplementedError
+    return None
 
 
 def parse_args():

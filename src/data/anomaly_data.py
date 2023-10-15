@@ -23,7 +23,9 @@ class AnomalyData:
         if self.normal_regions:
             return self.normal_regions
         return [
-            i for i in range(len(self.attributes)) if i not in self.abnormal_regions
+            i
+            for i in range(len(self.values))
+            if i not in self.abnormal_regions and self.values[i][1] > 0
         ]
 
     @functools.cached_property
@@ -47,6 +49,14 @@ class AnomalyData:
     def valid_values_as_np(self) -> np.ndarray:
         """Get all values"""
         return np.array(self.valid_values)
+
+    @functools.cached_property
+    def valid_normal_values(self) -> List[List[float]]:
+        return [self.values[i] for i in self.valid_normal_regions]
+
+    @functools.cached_property
+    def valid_abnormal_values(self) -> List[List[float]]:
+        return [self.values[i] for i in self.valid_abnormal_regions]
 
     @functools.cached_property
     def training_data(self) -> np.ndarray:

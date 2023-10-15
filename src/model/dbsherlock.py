@@ -38,12 +38,16 @@ class DBSherlock:
                 paritions_by_attr.append([])
                 continue
             partition_size = value_range / self.num_discrete
+            plus_alpha = partition_size * self.num_discrete <= value_range
 
             paritions: List[Partition] = []
-            for idx in range(self.num_discrete):
+            for idx in range(self.num_discrete + plus_alpha):
                 # Decide the range of the partition
                 partition_start_value = min_value + idx * partition_size
-                partition_end_value = min_value + (idx + 1) * partition_size
+                if idx == self.num_discrete:
+                    partition_end_value = float("inf")
+                else:
+                    partition_end_value = min_value + (idx + 1) * partition_size
                 # Add the partition
                 paritions.append(
                     Partition(
@@ -142,7 +146,7 @@ class DBSherlock:
                         if partitions[idx].label != partitions[adj_idx].label:
                             indices_to_filter.append(idx)
                             indices_to_filter.append(adj_idx)
-                            break
+                        break
         # Remove duplicates
         indices_to_filter = list(set(indices_to_filter))
 
@@ -154,50 +158,63 @@ class DBSherlock:
             # Prevent emptying if there are no more Normal or Abnormal partitions
             if partitions[idx].is_normal and num_normal > 1:
                 partitions[idx].is_empty = True
-                num_normal -= 1
             elif partitions[idx].is_abnormal and num_abnormal > 1:
                 partitions[idx].is_empty = True
-                num_abnormal -= 1
 
         return partitions
 
     def fill_partition_labels(self, partitions: List[Partition]) -> List[Partition]:
-        def calculate_distance_to_nearest_label(start_idx: int, label: Label) -> float:
-            """Calculate the distance to the nearest label. Here, the distance is defined
-            as the number of partitions between the start_idx and the nearest label.
-            """
-            distance_to_nearest_label = float("inf")
-            # Search forward
-            for adj_idx in range(start_idx + 1, len(partitions)):
-                if partitions[adj_idx].label == label:
-                    distance_to_nearest_label = adj_idx - start_idx
-                    break
-            # Search backward
-            for adj_idx in range(start_idx - 1, -1, -1):
-                if partitions[adj_idx].label == label:
-                    distance_to_nearest_label = min(
-                        distance_to_nearest_label, start_idx - adj_idx
-                    )
-                    break
-            return distance_to_nearest_label
-
+        to_change: List[int, Label] = []
         for idx, partition in enumerate(partitions):
             if partition.is_empty:
-                # Calculate distance to the nearest normal and abnormal partition
-                distance_to_normal = calculate_distance_to_nearest_label(
-                    start_idx=idx, label=Normal()
-                )
-                distance_to_abnormal = calculate_distance_to_nearest_label(
-                    start_idx=idx, label=Abnormal()
-                )
+                # Initialize label and distance
+                left_label = None
+                right_label = None
+                distance_to_nearest_left_label = float("inf")
+                distance_to_nearest_right_label = float("inf")
+
+                # Find the distance and label to the nearest left label
+                for adj_idx in range(idx - 1, -1, -1):
+                    if not partitions[adj_idx].is_empty:
+                        distance = abs(adj_idx - idx)
+                        if distance < distance_to_nearest_left_label:
+                            distance_to_nearest_left_label = distance
+                            left_label = partitions[adj_idx].label
+                        break
+                # Find the distance and label to the nearest right label
+                for adj_idx in range(idx + 1, len(partitions)):
+                    if not partitions[adj_idx].is_empty:
+                        distance = abs(adj_idx - idx)
+                        if distance < distance_to_nearest_right_label:
+                            distance_to_nearest_right_label = distance
+                            right_label = partitions[adj_idx].label
+                        break
                 # Label the partition
-                if distance_to_normal < distance_to_abnormal * self.abnormal_multiplier:
-                    partition.is_normal = True
+                if left_label == right_label and left_label is not None:
+                    partition.label = left_label
                 else:
-                    partition.is_abnormal = True
+                    # Modify distance if the label is abnormal
+                    if left_label == Abnormal():
+                        distance_to_nearest_left_label *= self.abnormal_multiplier
+                    if right_label == Abnormal():
+                        distance_to_nearest_right_label *= self.abnormal_multiplier
+                    # Compare the distance and label the partition
+                    if distance_to_nearest_left_label < distance_to_nearest_right_label:
+                        to_change.append((idx, left_label))
+                    elif (
+                        distance_to_nearest_left_label > distance_to_nearest_right_label
+                    ):
+                        to_change.append((idx, right_label))
+                    else:
+                        pass
+        # Apply changes
+        for idx, label in to_change:
+            partitions[idx].label = label
         return partitions
 
     def extract_predicate(self, partitions: List[Partition]) -> List[Predicate]:
+        if len(partitions) == 0:
+            return []
         attribute = partitions[0].attribute
         predicates = []
         for idx in range(len(partitions) - 1):
@@ -205,42 +222,38 @@ class DBSherlock:
             next_partition = partitions[idx + 1]
 
             # Make sure to start the range if the first partition is abnormal
-            if idx == 0 and current_partition.is_abnormal:
-                predicates += [(">", current_partition.min)]
             # End the range
-            if current_partition.is_abnormal and next_partition.is_normal:
-                predicates += [("<", current_partition.max)]
+            if current_partition.is_abnormal and not next_partition.is_abnormal:
+                # Variable goes left
+                predicates.append([("<", next_partition.min)])
             # Start the range
-            if current_partition.is_normal and next_partition.is_abnormal:
-                predicates += [(">", current_partition.min)]
+            if not current_partition.is_abnormal and next_partition.is_abnormal:
+                # Variable goes left
+                if len(predicates) == 0:
+                    predicates.append([(">", current_partition.max)])
+                else:
+                    predicates[-1].append(("<", current_partition.max))
 
         # Format predicates as DNF
         predicate_as_dnf: List[Predicate] = []
-        for idx in range(0, len(predicates), 2):
-            if idx == len(predicates) - 1:
-                assert (
-                    predicates[idx][0] == ">"
-                ), f"Invalid predicate: {predicates[idx]}"
+        for predicate in predicates:
+            if len(predicate) == 1:
                 # Single literal
                 predicate_as_dnf += [
                     Predicate(
                         attribute=attribute,
-                        operator1=predicates[idx][0],
-                        operand1=predicates[idx][1],
+                        operator1=predicate[0][0],
+                        operand1=predicate[0][1],
                     )
                 ]
             else:
-                # Multiple literals as conjunction
-                assert (
-                    predicates[idx][0] == ">" and predicates[idx + 1][0] == "<"
-                ), f"Invalid predicate: {predicates[idx]} and {predicates[idx + 1]}"
                 predicate_as_dnf += [
                     Predicate(
                         attribute=attribute,
-                        operator1=predicates[idx][0],
-                        operand1=predicates[idx][1],
-                        operator2=predicates[idx + 1][0],
-                        operand2=predicates[idx + 1][1],
+                        operator1=predicate[0][0],
+                        operand1=predicate[0][1],
+                        operator2=predicate[1][0],
+                        operand2=predicate[1][1],
                     )
                 ]
         return predicate_as_dnf
@@ -263,12 +276,12 @@ class DBSherlock:
         partitions_to_use: List[List[Partition]] = list(
             filter(self.is_to_extract_predicates, partitions_labeled)
         )
+        # partitions_to_use = partitions_labeled
         # Filter partitions
         partitions_copied = copy.deepcopy(partitions_to_use)
         filtered_partitions: List[List[Partition]] = list(
             map(self.filter_partitions, partitions_copied)
         )
-
         # Fill partition labels
         filled_partitions: List[List[Partition]] = list(
             map(self.fill_partition_labels, filtered_partitions)
@@ -310,44 +323,72 @@ class DBSherlock:
                 abnormal_regions=data.valid_abnormal_regions,
             )
             partitions_labeled.append(labeled_partitions)
+        # # Filtering partitions
+        # filtered_partitions: List[List[Partition]] = list(
+        #     map(self.filter_partitions, partitions_labeled)
+        # )
 
-        # Get only the partitions to be used for extracting predicates
-        partitions_to_use: List[List[Partition]] = list(
-            filter(self.is_to_extract_predicates, partitions_labeled)
-        )
-
-        total_confidence = 0
-        total_precision = 0
-        # TODO: average를 predicates 기준으로 해야함. partition에 대해서는 더 해줘야하는데, matlab 코드에서 line:532 참조 필요
-        for partitions in partitions_to_use:
-            # Count the number of normal and abnormal partitions satisfying the predicate of causal model
+        precisions = []
+        covered_normal_ratios = []
+        covered_abnormal_ratios = []
+        for attribute, predicates in causal_model.predicates_dic.items():
+            # Find partitions belonging to the attribute
+            partitions_to_use = list_utils.do_flatten_list(
+                [
+                    partitions
+                    for partitions in partitions_labeled
+                    if partitions and partitions[0].attribute == attribute
+                ]
+            )
+            if len(partitions_to_use) == 0:
+                continue
             num_normal_partitions = 0
             num_abnormal_partitions = 0
-            num_valid_normal_partitions = 0
-            num_valid_abnormal_partitions = 0
-            # Count
-            for partition in partitions:
+            num_covered_normal_partitions = 0
+            num_covered_abnormal_partitions = 0
+            for partition in partitions_to_use:
                 if partition.is_normal:
                     num_normal_partitions += 1
                     if causal_model.is_valid_partition(partition):
-                        num_valid_normal_partitions += 1
+                        num_covered_normal_partitions += 1
                 elif partition.is_abnormal:
                     num_abnormal_partitions += 1
                     if causal_model.is_valid_partition(partition):
-                        num_valid_abnormal_partitions += 1
-
-            # Compute confidence
-            covered_normal_ratio = num_valid_normal_partitions / num_normal_partitions
-            covered_abnormal_ratio = (
-                num_valid_abnormal_partitions / num_abnormal_partitions
-            )
-            confidence = covered_abnormal_ratio - covered_normal_ratio
-            precision = covered_abnormal_ratio / (
-                covered_abnormal_ratio + covered_normal_ratio
-            )
+                        num_covered_abnormal_partitions += 1
+            # Compute normal ratio
+            if num_normal_partitions == 0:
+                covered_normal_ratio = 0
+            else:
+                covered_normal_ratio = (
+                    num_covered_normal_partitions / num_normal_partitions
+                )
+            # Compute abnormal ratio
+            if num_abnormal_partitions == 0:
+                covered_abnormal_ratio = 0
+            else:
+                covered_abnormal_ratio = (
+                    num_covered_abnormal_partitions / num_abnormal_partitions
+                )
+            # Compute precision
+            if covered_abnormal_ratio + covered_normal_ratio == 0:
+                precision = 0
+            else:
+                precision = covered_abnormal_ratio / (
+                    covered_abnormal_ratio + covered_normal_ratio
+                )
             # Aggregate
-            total_confidence += confidence
-            total_precision += precision
-        avg_total_precision = total_precision / len(partitions_to_use) * 100
-        avg_total_confidence = total_confidence / len(partitions_to_use) * 100
-        return avg_total_precision, avg_total_confidence
+            covered_normal_ratios.append(covered_normal_ratio)
+            covered_abnormal_ratios.append(covered_abnormal_ratio)
+            precisions.append(precision)
+        # Compute average precision and confidence
+        avg_covered_normal_ratio = sum(covered_normal_ratios) / len(
+            covered_abnormal_ratios
+        )
+        avg_covered_abnormal_ratio = sum(covered_abnormal_ratios) / len(
+            covered_abnormal_ratios
+        )
+        avg_precision = sum(precisions) / len(precisions)
+        confidence = (avg_covered_abnormal_ratio - avg_covered_normal_ratio) * 100
+        precision = avg_precision * 100
+
+        return confidence, precision
