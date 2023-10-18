@@ -3,48 +3,55 @@ import logging
 from typing import *
 
 import hkkang_utils.file as file_utils
-import numpy as np
-from matplotlib import pyplot as plt
+import tqdm
 
-from src.data.anomaly_data import AnomalyData
+from src.data.anomaly_data import AnomalyData, AnomalyDataset
+from src.data.visualize import plot_data
 
-logger = logging.getLogger("DataConverter")
+logger = logging.getLogger("DataVisualizer")
 
 
-def main(input_path: str) -> None:
+def main(data_path: str, output_path: str, plot_all_data: bool = False) -> None:
     # Load data
-    data_in_json = file_utils.read_json_file(input_path)
-    anomaly_data_list = [AnomalyData.from_dict(data=d) for d in data_in_json]
+    data_in_json = file_utils.read_json_file(data_path)
+    anomaly_dataset = AnomalyDataset.from_dict(data=data_in_json)
 
     # Group data by causes
     cause_to_anomaly_data_list = {}
-    for anomaly_data in anomaly_data_list:
-        cause = anomaly_data.cause
-        if cause not in cause_to_anomaly_data_list:
-            cause_to_anomaly_data_list[cause] = []
-        cause_to_anomaly_data_list[cause].append(anomaly_data)
+    for cause in anomaly_dataset.causes:
+        data_for_cause: List[AnomalyData] = anomaly_dataset.get_data_of_cause(cause)
+        cause_to_anomaly_data_list[cause] = data_for_cause
 
     # Visualize data
-    for cause, anomaly_data_list in cause_to_anomaly_data_list.items():
-        logger.info(f"cause: {cause}, # of anomaly data: {len(anomaly_data_list)}")
-        for data_idx, data in enumerate(anomaly_data_list):
-            # Plot for each feature
-            for att_idx, attribute in enumerate(data.attributes):
-                logger.info(f"att_idx: {att_idx}, att: {attribute}")
-                x = range(data.values_as_np[:, att_idx].shape[0])
-                y = data.values_as_np[:, att_idx]
-                plt.plot(x, y)
-                plt.show()
-
-    return None
+    pbar_for_cause_data = tqdm.tqdm(cause_to_anomaly_data_list.items())
+    for cause, anomaly_data_list in pbar_for_cause_data:
+        pbar_for_cause_data.set_description(f"Visualizing cause: {cause}")
+        if plot_all_data:
+            pbar_for_instance = tqdm.tqdm(anomaly_data_list)
+            for data_idx, data in enumerate(
+                pbar_for_instance, total=len(anomaly_data_list)
+            ):
+                pbar_for_instance.set_description(f"Visualizing instance: {data_idx}")
+                plot_data(data, cause=cause, data_id=data_idx, path=output_path)
+        else:
+            plot_data(anomaly_data_list[0], cause=cause, data_id=0, path=output_path)
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Convert .mat to .csv")
+    parser = argparse.ArgumentParser(description="Plot and visualize data")
     parser.add_argument(
-        "--input",
+        "--data",
         type=str,
         default="data/converted_dataset/tpcc_500w_test.json",
+    )
+    parser.add_argument(
+        "--output",
+        type=str,
+        default="results/visualize_data/",
+    )
+    parser.add_argument(
+        "--plot_all",
+        action="store_true",
     )
     return parser.parse_args()
 
@@ -59,7 +66,9 @@ if __name__ == "__main__":
     args = parse_args()
 
     # Arguments
-    input_path = args.input
+    data_path = args.data
+    output_path = args.output
+    plot_all = args.plot_all
 
-    main(input_path=input_path)
+    main(data_path=data_path, output_path=output_path, plot_all_data=plot_all)
     logger.info("Done!")

@@ -378,13 +378,22 @@ class DBSherlock:
             covered_abnormal_ratios.append(covered_abnormal_ratio)
             precisions.append(precision)
         # Compute average precision and confidence
-        avg_covered_normal_ratio = sum(covered_normal_ratios) / len(
-            covered_abnormal_ratios
-        )
-        avg_covered_abnormal_ratio = sum(covered_abnormal_ratios) / len(
-            covered_abnormal_ratios
-        )
-        avg_precision = sum(precisions) / len(precisions)
+        if len(covered_abnormal_ratios) == 0:
+            avg_covered_normal_ratio = 0
+        else:
+            avg_covered_normal_ratio = sum(covered_normal_ratios) / len(
+                covered_abnormal_ratios
+            )
+        if len(covered_abnormal_ratios) == 0:
+            avg_covered_abnormal_ratio = 0
+        else:
+            avg_covered_abnormal_ratio = sum(covered_abnormal_ratios) / len(
+                covered_abnormal_ratios
+            )
+        if len(precisions) == 0:
+            avg_precision = 0
+        else:
+            avg_precision = sum(precisions) / len(precisions)
         confidence = (avg_covered_abnormal_ratio - avg_covered_normal_ratio) * 100
         precision = avg_precision * 100
 

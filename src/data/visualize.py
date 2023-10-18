@@ -13,9 +13,6 @@ def plot_data(
     path: Optional[str] = None,
 ) -> None:
     """Plot data"""
-    # Create directory if not exists
-    if path:
-        os.makedirs(path, exist_ok=True)
     # Plot for each feature
     for att_idx, attribute in enumerate(data.attributes):
         title = f"{cause}-{attribute}-{data_id}".replace(" ", "_")
@@ -30,6 +27,9 @@ def plot_data(
             plt.plot(x[abnormal_idx], y[abnormal_idx], color="red", marker="o")
 
         if path:
+            os.makedirs(path, exist_ok=True)
+            # Replace "/" in title to avoid creating subdirectories
+            title = title.replace("/", "")
             plt.savefig(os.path.join(path, f"{title}.png"))
         else:
             plt.show()
@@ -37,17 +37,47 @@ def plot_data(
 
 
 def plot_performance(
-    anomaly_types: List[str],
+    anomaly_causes: List[str],
     confidences: List[float],
     precisions: List[float],
+    path: Optional[str] = None,
 ) -> None:
     """Plot performance"""
-    plt.title("Confidence and precision for each anomaly type")
-    plt.xlabel("Anomaly type")
+    plt.title("Confidence and precision for each anomaly cause")
+    plt.xlabel("Anomaly cause")
     plt.ylabel("Confidence and precision")
-    plt.xticks(rotation=45)
-    plt.bar(anomaly_types, confidences, color="blue")
-    plt.bar(anomaly_types, precisions, color="red")
-    plt.legend(["Confidence", "Precision"])
-    plt.show()
+
+    bar_width = 0.35
+    r1 = range(len(anomaly_causes))
+    r2 = [x + bar_width for x in r1]
+
+    plt.bar(
+        r1,
+        confidences,
+        color="blue",
+        width=bar_width,
+        edgecolor="grey",
+        label="Confidence",
+    )
+    plt.bar(
+        r2,
+        precisions,
+        color="red",
+        width=bar_width,
+        edgecolor="grey",
+        label="Precision",
+    )
+
+    plt.xlabel("Anomaly cause", fontweight="bold")
+    plt.xticks(
+        [r + bar_width for r in range(len(anomaly_causes))], anomaly_causes, rotation=45
+    )
+    plt.legend()
+    plt.tight_layout()
+
+    if path:
+        os.makedirs(path, exist_ok=True)
+        plt.savefig(os.path.join(path, "performance.png"))
+    else:
+        plt.show()
     plt.clf()

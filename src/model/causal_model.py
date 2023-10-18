@@ -30,18 +30,18 @@ class Predicate:
         else:
             return f"{self.operand1} {self.operator2} {self.attribute} {self.operator2} {self.operand2}"
 
-    def __add__(self, other: "Predicate") -> "Predicate":
+    def __add__(self, other: Union["Predicate", None]) -> Union["Predicate", None]:
+        if other is None:
+            return copy.deepcopy(self)
         # Check attribute
         assert (
             self.attribute == other.attribute
         ), f"Addition only supported for the same predicates. But found: {self.attribute} vs {other.attribute}"
         # Check operators
-        assert self.operator1 == other.operator1, f"Invalid predicate: {self} + {other}"
-        assert (
-            self.operator2 == other.operator2
-        ), f"Invalide predicate: {self} + {other}"
         assert self.operator1 in [">", "<"], f"Invalid operator1: {self.operator1}"
+        assert other.operator1 in [">", "<"], f"Invalid operator1: {self.operator1}"
         assert self.operator2 in ["<", None], f"Invalid operator2: {self.operator2}"
+        assert other.operator2 in ["<", None], f"Invalid operator2: {self.operator2}"
         # Condition 1: if both are unary
         if self.is_unary and other.is_unary:
             if self.operator1 == self.operator2:
@@ -57,75 +57,65 @@ class Predicate:
                         operand1=max(self.operand1, other.operand1),
                         operator1="<",
                     )
+                else:
+                    raise RuntimeError("Should not reach here")
             else:
-                if self.operator == ">":
-                    if self.operand1 >= other.operand1:
-                        new_predicate = None
-                    else:
-                        new_predicate = Predicate(
-                            attribute=self.attribute,
-                            operand1=self.operand1,
-                            operator1=">",
-                            operand2=other.operand1,
-                            operator2="<",
-                        )
-                elif self.operator1 == "<":
-                    if self.operand1 <= other.operand1:
-                        new_predicate = None
-                    else:
-                        new_predicate = Predicate(
-                            attribute=self.attribute,
-                            operand1=other.operand1,
-                            operator1="<",
-                            operand2=self.operand1,
-                            operator2=">",
-                        )
-        elif self.is_unary and other.is_binary:
-            raise NotImplementedError("TODO")
-            # The current predicate covers the other predicate
-            if self.operand1 >= other.operand2:
-                new_predicate = Predicate(
-                    attribute=self.attribute,
-                    operand1=self.operand1,
-                    operator1=">",
-                )
+                new_predicate = None
+        elif self.is_unary and other.is_binary or self.is_binary and other.is_unary:
+            unary_predicate = self if self.is_unary else other
+            binary_predicate = self if self.is_binary else other
+            if unary_predicate.operator1 == ">":
+                if unary_predicate.operand1 < binary_predicate.operand1:
+                    new_predicate = Predicate(
+                        attribute=self.attribute,
+                        operand1=unary_predicate.operand1,
+                        operator1=">",
+                    )
+                elif unary_predicate.operand1 > binary_predicate.operand2:
+                    new_predicate = None
+                else:
+                    new_predicate = Predicate(
+                        attribute=self.attribute,
+                        operand1=binary_predicate.operand1,
+                        operator1=">",
+                    )
+            elif unary_predicate.operator1 == "<":
+                if unary_predicate.operand1 > binary_predicate.operand2:
+                    new_predicate = Predicate(
+                        attribute=self.attribute,
+                        operand1=unary_predicate.operand1,
+                        operator1="<",
+                    )
+                elif unary_predicate.operand1 < binary_predicate.operand1:
+                    new_predicate = None
+                else:
+                    new_predicate = Predicate(
+                        attribute=self.attribute,
+                        operand1=binary_predicate.operand2,
+                        operator1="<",
+                    )
             else:
-                new_predicate = Predicate(
-                    attribute=self.attribute,
-                    operand1=min(self.operand1, other.operand1),
-                    operator1=">",
-                    operand2=other.operand2,
-                    operator2="<",
-                )
-        elif self.is_binary and other.is_unary:
-            raise NotImplementedError("TODO")
-            # The other predicate covers the current predicate
-            if other.operand1 >= self.operand2:
-                new_predicate = Predicate(
-                    attribute=self.attribute,
-                    operand1=other.operand1,
-                    operator1=">",
-                )
-            else:
-                new_predicate = Predicate(
-                    attribute=self.attribute,
-                    operand1=min(self.operand1, other.operand1),
-                    operator1=">",
-                    operand2=self.operand2,
-                    operator2="<",
-                )
+                raise RuntimeError("Should not reach here")
         elif self.is_binary and other.is_binary:
-            raise NotImplementedError("TODO")
-            new_predicate = Predicate(
-                attribute=self.attribute,
-                operand1=min(self.operand1, other.operand1),
-                operator1=">",
-                operand2=max(self.operand2, other.operand2),
-                operator2="<",
-            )
-
+            # Check if there is overlap
+            if self.operand1 < other.operand2 or self.operand2 < other.operand1:
+                new_predicate = None
+            else:
+                new_predicate = Predicate(
+                    attribute=self.attribute,
+                    operand1=min(self.operand1, other.operand1),
+                    operator1=">",
+                    operand2=max(self.operand2, other.operand2),
+                    operator2="<",
+                )
+        else:
+            raise RuntimeError("Should not reach here")
         # Return new instance
         return new_predicate
+
+    def __radd__(self, other: "Union[Predicate, any]") -> "Predicate":
+        if type(other) != type(self):
+            return copy.deepcopy(self)
 
 
 @data_utils.dataclass
@@ -171,14 +161,16 @@ class CausalModel:
             predicate1 = predicate_dic1[attribute]
             predicate2 = predicate_dic2[attribute]
             # Union of predicates
-            new_predicate_dic[attribute] = predicate1 + predicate2
+            merged_predicate = predicate1 + predicate2
+            if merged_predicate:
+                new_predicate_dic[attribute] = merged_predicate
         # Return new instance
         return CausalModel(
             cause=self.cause,
             predicates_dic=new_predicate_dic,
         )
 
-    def __radd__(self, other) -> "CausalModel":
+    def __radd__(self, other: Union["CausalModel", any]) -> "CausalModel":
         if type(other) == int and other == 0:
             return copy.deepcopy(self)
         return self.__add__(other)

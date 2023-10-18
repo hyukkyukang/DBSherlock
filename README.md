@@ -52,6 +52,12 @@ python scripts/data/convert_dataset.py \
 ### How to load the dataset in Python
 Please refer to [src/data/README.md](src/data/README.md)
 
+## Visualize Dataset
+```bash
+python scripts/visualize/data.py \
+--data data/converted_dataset/tpcc_500w_test.json
+```
+
 ## Run Experiments
 ### Experiment 1
 Accuracy of Single Causal Models (Figure 7 in the paper)
@@ -61,6 +67,9 @@ python scripts/experiments/experiment.py \
 --output_dir result/exp1/ \
 --exp_id 1
 ```
+The result plot should look like this:
+
+![plot](./results/exp1/performance.png)
 
 ### Experiment 2
 DBSherlock Predicates versus PerfXplain (Figure 9 in the paper)
@@ -70,6 +79,9 @@ python scripts/experiments/experiment.py \
 --output_dir result/exp2/ \
 --exp_id 2
 ```
+The result plot should look like this:
+
+![plot](./results/exp2/performance.png)
 
 ### Experiment 3
 Effectiveness of Merged Causal Models (Figure 8 in the paper)
@@ -79,3 +91,6 @@ python scripts/experiments/experiment.py \
 --output_dir result/exp3/ \
 --exp_id 3
 ```
+The result plot should look like this:
+
+![plot](./results/exp3/performance.png)
