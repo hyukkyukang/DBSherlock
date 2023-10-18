@@ -210,3 +210,5 @@ Thumbs.db
 *.wmv
 
 /data/
+/tmp/
+/results/
