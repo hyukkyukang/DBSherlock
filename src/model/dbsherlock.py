@@ -293,14 +293,14 @@ class DBSherlock:
         )
 
         # Filter attributes with only one predicate
-        filtered_predicates: List[List[Predicate]] = [
-            predicates for predicates in extracted_predicates if len(predicates) == 1
+        filtered_predicates: List[Predicate] = [
+            predicates[0] for predicates in extracted_predicates if len(predicates) == 1
         ]
 
         # Create causal model
         causal_model = CausalModel(
             cause=data.cause,
-            predicates_dic={p[0].attribute: p for p in filtered_predicates},
+            predicates_dic={p.attribute: p for p in filtered_predicates},
         )
 
         return causal_model

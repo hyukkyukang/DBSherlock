@@ -1,3 +1,4 @@
+import copy
 from typing import *
 
 import hkkang_utils.data as data_utils
@@ -96,7 +97,7 @@ class Predicate:
 @data_utils.dataclass
 class CausalModel:
     cause: str
-    predicates_dic: Dict[str, List[Predicate]]  # List of effective predicates
+    predicates_dic: Dict[str, Predicate]  # Effective predicates
 
     def _do_satisfy_predicate(self, predicate: Predicate, partition: Partition) -> bool:
         """Check if the partition satisfies the predicate"""
@@ -118,9 +119,8 @@ class CausalModel:
         """Check if the partition satisfies any of the effective predicates"""
         if partition.attribute not in self.predicates_dic:
             return False
-        return any(
-            self._do_satisfy_predicate(predicate, partition)
-            for predicate in self.predicates_dic[partition.attribute]
+        return self._do_satisfy_predicate(
+            self.predicates_dic[partition.attribute], partition
         )
 
     def __add__(self, other: "CausalModel") -> "CausalModel":
@@ -143,3 +143,8 @@ class CausalModel:
             cause=self.cause,
             predicates_dic=new_predicate_dic,
         )
+
+    def __radd__(self, other) -> "CausalModel":
+        if type(other) == int and other == 0:
+            return copy.deepcopy(self)
+        return self.__add__(other)

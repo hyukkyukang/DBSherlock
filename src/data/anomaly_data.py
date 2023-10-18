@@ -76,3 +76,6 @@ class AnomalyDataset:
 
     def __getitem__(self, idx: int) -> AnomalyData:
         return self.data[idx]
+
+    def get_data_of_cause(self, cause: str) -> List[AnomalyData]:
+        return [data for data in self.data if data.cause == cause]
