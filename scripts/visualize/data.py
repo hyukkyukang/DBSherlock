@@ -25,6 +25,9 @@ def main(data_path: str, output_path: str, plot_all_data: bool = False) -> None:
     # Visualize data
     pbar_for_cause_data = tqdm.tqdm(cause_to_anomaly_data_list.items())
     for cause, anomaly_data_list in pbar_for_cause_data:
+        # Get output path for each cause
+        output_path_for_cause = os.path.join(output_path, cause.replace("/", ""))
+        # Create plot
         pbar_for_cause_data.set_description(f"Visualizing cause: {cause}")
         if plot_all_data:
             pbar_for_instance = tqdm.tqdm(anomaly_data_list)
@@ -32,9 +35,13 @@ def main(data_path: str, output_path: str, plot_all_data: bool = False) -> None:
                 pbar_for_instance, total=len(anomaly_data_list)
             ):
                 pbar_for_instance.set_description(f"Visualizing instance: {data_idx}")
-                plot_data(data, cause=cause, data_id=data_idx, path=output_path)
+                plot_data(
+                    data, cause=cause, data_id=data_idx, path=output_path_for_cause
+                )
         else:
-            plot_data(anomaly_data_list[0], cause=cause, data_id=0, path=output_path)
+            plot_data(
+                anomaly_data_list[0], cause=cause, data_id=0, path=output_path_for_cause
+            )
 
 
 def parse_args():
@@ -71,4 +78,5 @@ if __name__ == "__main__":
     plot_all = args.plot_all
 
     main(data_path=data_path, output_path=output_path, plot_all_data=plot_all)
+
     logger.info("Done!")
