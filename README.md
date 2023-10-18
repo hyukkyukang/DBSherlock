@@ -58,7 +58,7 @@ Accuracy of Single Causal Models (Figure 7 in the paper)
 ```bash
 python scripts/experiments/experiment.py \
 --data data/converted_dataset/tpcc_500w_test.json \
---output_dir result/exp1/
+--output_dir result/exp1/ \
 --exp_id 1
 ```
 
@@ -67,7 +67,7 @@ DBSherlock Predicates versus PerfXplain (Figure 9 in the paper)
 ```bash
 python scripts/experiments/experiment.py \
 --data data/converted_dataset/tpcc_16w_test.json \
---output_dir result/exp2/
+--output_dir result/exp2/ \
 --exp_id 2
 ```
 
@@ -76,6 +76,6 @@ Effectiveness of Merged Causal Models (Figure 8 in the paper)
 ```bash
 python scripts/experiments/experiment.py \
 --data data/converted_dataset/tpcc_500w_test.json \
---output_dir result/exp3/
+--output_dir result/exp3/ \
 --exp_id 3
 ```

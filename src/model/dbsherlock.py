@@ -223,16 +223,17 @@ class DBSherlock:
 
             # Make sure to start the range if the first partition is abnormal
             # End the range
-            if current_partition.is_abnormal and not next_partition.is_abnormal:
-                # Variable goes left
-                predicates.append([("<", next_partition.min)])
             # Start the range
             if not current_partition.is_abnormal and next_partition.is_abnormal:
                 # Variable goes left
+                predicates.append([(">", current_partition.max)])
+            elif current_partition.is_abnormal and not next_partition.is_abnormal:
                 if len(predicates) == 0:
-                    predicates.append([(">", current_partition.max)])
+                    # Variable goes left
+                    predicates.append([("<", next_partition.min)])
                 else:
-                    predicates[-1].append(("<", current_partition.max))
+                    # Check last variable
+                    predicates[-1].append(("<", next_partition.min))
 
         # Format predicates as DNF
         predicate_as_dnf: List[Predicate] = []

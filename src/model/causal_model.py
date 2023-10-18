@@ -40,16 +40,48 @@ class Predicate:
         assert (
             self.operator2 == other.operator2
         ), f"Invalide predicate: {self} + {other}"
-        assert self.operator1 == ">", f"Invalid operator1: {self.operator1}"
+        assert self.operator1 in [">", "<"], f"Invalid operator1: {self.operator1}"
         assert self.operator2 in ["<", None], f"Invalid operator2: {self.operator2}"
         # Condition 1: if both are unary
         if self.is_unary and other.is_unary:
-            new_predicate = Predicate(
-                attribute=self.attribute,
-                operand1=min(self.operand1, other.operand1),
-                operator1=">",
-            )
+            if self.operator1 == self.operator2:
+                if self.operator1 == ">":
+                    new_predicate = Predicate(
+                        attribute=self.attribute,
+                        operand1=min(self.operand1, other.operand1),
+                        operator1=">",
+                    )
+                elif self.operator1 == "<":
+                    new_predicate = Predicate(
+                        attribute=self.attribute,
+                        operand1=max(self.operand1, other.operand1),
+                        operator1="<",
+                    )
+            else:
+                if self.operator == ">":
+                    if self.operand1 >= other.operand1:
+                        new_predicate = None
+                    else:
+                        new_predicate = Predicate(
+                            attribute=self.attribute,
+                            operand1=self.operand1,
+                            operator1=">",
+                            operand2=other.operand1,
+                            operator2="<",
+                        )
+                elif self.operator1 == "<":
+                    if self.operand1 <= other.operand1:
+                        new_predicate = None
+                    else:
+                        new_predicate = Predicate(
+                            attribute=self.attribute,
+                            operand1=other.operand1,
+                            operator1="<",
+                            operand2=self.operand1,
+                            operator2=">",
+                        )
         elif self.is_unary and other.is_binary:
+            raise NotImplementedError("TODO")
             # The current predicate covers the other predicate
             if self.operand1 >= other.operand2:
                 new_predicate = Predicate(
@@ -66,6 +98,7 @@ class Predicate:
                     operator2="<",
                 )
         elif self.is_binary and other.is_unary:
+            raise NotImplementedError("TODO")
             # The other predicate covers the current predicate
             if other.operand1 >= self.operand2:
                 new_predicate = Predicate(
@@ -82,6 +115,7 @@ class Predicate:
                     operator2="<",
                 )
         elif self.is_binary and other.is_binary:
+            raise NotImplementedError("TODO")
             new_predicate = Predicate(
                 attribute=self.attribute,
                 operand1=min(self.operand1, other.operand1),
