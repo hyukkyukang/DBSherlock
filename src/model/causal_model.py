@@ -7,6 +7,8 @@ from src.model.partition import Partition
 
 @data_utils.dataclass
 class Predicate:
+    """For operators, assume that the variables are on the left side"""
+
     attribute: str
     operand1: float
     operator1: str
@@ -27,6 +29,69 @@ class Predicate:
         else:
             return f"{self.operand1} {self.operator2} {self.attribute} {self.operator2} {self.operand2}"
 
+    def __add__(self, other: "Predicate") -> "Predicate":
+        # Check attribute
+        assert (
+            self.attribute == other.attribute
+        ), f"Addition only supported for the same predicates. But found: {self.attribute} vs {other.attribute}"
+        # Check operators
+        assert self.operator1 == other.operator1, f"Invalid predicate: {self} + {other}"
+        assert (
+            self.operator2 == other.operator2
+        ), f"Invalide predicate: {self} + {other}"
+        assert self.operator1 == ">", f"Invalid operator1: {self.operator1}"
+        assert self.operator2 in ["<", None], f"Invalid operator2: {self.operator2}"
+        # Condition 1: if both are unary
+        if self.is_unary and other.is_unary:
+            new_predicate = Predicate(
+                attribute=self.attribute,
+                operand1=min(self.operand1, other.operand1),
+                operator1=">",
+            )
+        elif self.is_unary and other.is_binary:
+            # The current predicate covers the other predicate
+            if self.operand1 >= other.operand2:
+                new_predicate = Predicate(
+                    attribute=self.attribute,
+                    operand1=self.operand1,
+                    operator1=">",
+                )
+            else:
+                new_predicate = Predicate(
+                    attribute=self.attribute,
+                    operand1=min(self.operand1, other.operand1),
+                    operator1=">",
+                    operand2=other.operand2,
+                    operator2="<",
+                )
+        elif self.is_binary and other.is_unary:
+            # The other predicate covers the current predicate
+            if other.operand1 >= self.operand2:
+                new_predicate = Predicate(
+                    attribute=self.attribute,
+                    operand1=other.operand1,
+                    operator1=">",
+                )
+            else:
+                new_predicate = Predicate(
+                    attribute=self.attribute,
+                    operand1=min(self.operand1, other.operand1),
+                    operator1=">",
+                    operand2=self.operand2,
+                    operator2="<",
+                )
+        elif self.is_binary and other.is_binary:
+            new_predicate = Predicate(
+                attribute=self.attribute,
+                operand1=min(self.operand1, other.operand1),
+                operator1=">",
+                operand2=max(self.operand2, other.operand2),
+                operator2="<",
+            )
+
+        # Return new instance
+        return new_predicate
+
 
 @data_utils.dataclass
 class CausalModel:
@@ -41,7 +106,9 @@ class CausalModel:
             else:
                 return partition.max <= predicate.operand1
         else:
-            assert predicate.operator1 == ">" and predicate.operator2 == "<"
+            assert (
+                predicate.operator1 == ">" and predicate.operator2 == "<"
+            ), f"Invalid predicate: {predicate}"
             return (
                 partition.min >= predicate.operand1
                 and partition.max <= predicate.operand2
@@ -54,4 +121,25 @@ class CausalModel:
         return any(
             self._do_satisfy_predicate(predicate, partition)
             for predicate in self.predicates_dic[partition.attribute]
+        )
+
+    def __add__(self, other: "CausalModel") -> "CausalModel":
+        """Not in-place addition"""
+        assert (
+            self.cause == other.cause
+        ), f"Addition is supported on the same anomaly causes. But found: {self.cause} vs {other.cause}"
+        predicate_dic1 = self.predicates_dic
+        predicate_dic2 = other.predicates_dic
+        new_predicate_dic = {}
+        # Select common attributes
+        common_attributes = set(predicate_dic1.keys()) & set(predicate_dic2.keys())
+        for attribute in common_attributes:
+            predicate1 = predicate_dic1[attribute]
+            predicate2 = predicate_dic2[attribute]
+            # Union of predicates
+            new_predicate_dic[attribute] = predicate1 + predicate2
+        # Return new instance
+        return CausalModel(
+            cause=self.cause,
+            predicates_dic=new_predicate_dic,
         )

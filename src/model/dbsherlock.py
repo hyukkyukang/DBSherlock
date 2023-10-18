@@ -323,10 +323,6 @@ class DBSherlock:
                 abnormal_regions=data.valid_abnormal_regions,
             )
             partitions_labeled.append(labeled_partitions)
-        # # Filtering partitions
-        # filtered_partitions: List[List[Partition]] = list(
-        #     map(self.filter_partitions, partitions_labeled)
-        # )
 
         precisions = []
         covered_normal_ratios = []
