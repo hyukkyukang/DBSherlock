@@ -6,7 +6,7 @@ from typing import *
 import hkkang_utils.file as file_utils
 import scipy
 
-from src.data.anomaly_data import AnomalyData
+from src.data.anomaly_data import AnomalyDataset
 from src.data.convert.dbsherlock import process_dataset
 
 logger = logging.getLogger("DataConverter")
@@ -21,7 +21,7 @@ def main(input_path: str, output_dir: str, prefix: str) -> None:
 
     # Create anomaly dataset
     logger.info(f"Create anomaly dataset from {input_path}")
-    test_dataset: List[AnomalyData] = process_dataset(
+    test_dataset: AnomalyDataset = process_dataset(
         causes_as_np=original_data["causes"],
         dataset_as_np=original_data["test_datasets"],
         normal_regions=original_data["normal_regions"],
@@ -31,12 +31,12 @@ def main(input_path: str, output_dir: str, prefix: str) -> None:
     # Write to file
     output_file_path = os.path.join(output_dir, f"{prefix}_test.json")
     logger.info(f"Writing {len(test_dataset)} data to {output_file_path}")
-    file_utils.write_json_file([d.dic for d in test_dataset], output_file_path)
+    file_utils.write_json_file(test_dataset.dic, output_file_path)
 
     # Create compound anomaly dataset if exists
     if "compound_datasets" in original_data:
         logger.info(f"Create compound anomaly dataset from {input_path}")
-        compound_dataset: List[AnomalyData] = process_dataset(
+        compound_dataset: AnomalyDataset = process_dataset(
             causes_as_np=original_data["compound_causes"],
             dataset_as_np=original_data["compound_datasets"],
             normal_regions=original_data["normal_regions_compound"],
@@ -45,10 +45,7 @@ def main(input_path: str, output_dir: str, prefix: str) -> None:
         # Write to file
         output_file_path = os.path.join(output_dir, f"{prefix}_test_compound.json")
         logger.info(f"Writing {len(compound_dataset)} data to {output_file_path}")
-        file_utils.write_json_file(
-            [d.dic for d in compound_dataset],
-            output_file_path,
-        )
+        file_utils.write_json_file(compound_dataset.dic, output_file_path)
 
     return None
 

@@ -5,7 +5,7 @@ import hkkang_utils.list as list_utils
 import numpy as np
 import tqdm
 
-from src.data.anomaly_data import AnomalyData
+from src.data.anomaly_data import AnomalyData, AnomalyDataset
 
 logger = logging.getLogger("DBSherlockDataConverter")
 
@@ -53,9 +53,9 @@ def process_dataset(
     dataset_as_np: np.ndarray,
     normal_regions: np.ndarray,
     abnormal_regions: np.ndarray,
-) -> List[AnomalyData]:
+) -> AnomalyDataset:
     causes = [d.item() for d in causes_as_np[0]]
-    dataset: List[AnomalyData] = []
+    data_list: List[AnomalyData] = []
     # Convert dataset to test cases
     test_cases = np_dataset_to_test_cases(dataset_as_np)
     # Create AnomalyData for each test case (i.e., for each anomaly causes)
@@ -67,7 +67,7 @@ def process_dataset(
         for attributes, values, n_reg, abn_reg in list_utils.safe_zip(
             attributes_list, values_list, n_regs, abn_regs
         ):
-            dataset.append(
+            data_list.append(
                 AnomalyData(
                     cause=cause,
                     attributes=attributes,
@@ -77,4 +77,14 @@ def process_dataset(
                 )
             )
 
-    return dataset
+    # Extract anomaly causes
+    anomaly_causes: List[str] = []
+    for data in data_list:
+        anomaly_cause = data.cause
+        if anomaly_cause not in anomaly_causes:
+            anomaly_causes.append(anomaly_cause)
+
+    return AnomalyDataset(
+        causes=anomaly_causes,
+        data=data_list,
+    )

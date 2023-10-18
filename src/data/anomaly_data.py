@@ -64,3 +64,15 @@ class AnomalyData:
         valid_regions = self.valid_normal_regions + self.abnormal_regions
         training_indices = [i for i in range(len(self.values)) if i in valid_regions]
         return self.values_as_np[training_indices:]
+
+
+@data_utils.dataclass
+class AnomalyDataset:
+    causes: List[str] = data_utils.field(default_factory=list)
+    data: List[AnomalyData] = data_utils.field(default_factory=list)
+
+    def __len__(self) -> int:
+        return len(self.data)
+
+    def __getitem__(self, idx: int) -> AnomalyData:
+        return self.data[idx]
