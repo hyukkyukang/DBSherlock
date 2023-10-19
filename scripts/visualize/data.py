@@ -1,5 +1,6 @@
 import argparse
 import logging
+import os
 from typing import *
 
 import hkkang_utils.file as file_utils
@@ -13,6 +14,7 @@ logger = logging.getLogger("DataVisualizer")
 
 def main(data_path: str, output_path: str, plot_all_data: bool = False) -> None:
     # Load data
+    logger.info(f"Loading data from {data_path}")
     data_in_json = file_utils.read_json_file(data_path)
     anomaly_dataset = AnomalyDataset.from_dict(data=data_in_json)
 
@@ -26,7 +28,9 @@ def main(data_path: str, output_path: str, plot_all_data: bool = False) -> None:
     pbar_for_cause_data = tqdm.tqdm(cause_to_anomaly_data_list.items())
     for cause, anomaly_data_list in pbar_for_cause_data:
         # Get output path for each cause
-        output_path_for_cause = os.path.join(output_path, cause.replace("/", ""))
+        output_path_for_cause = os.path.join(
+            output_path, cause.replace("/", "")
+        ).replace(" ", "_")
         # Create plot
         pbar_for_cause_data.set_description(f"Visualizing cause: {cause}")
         if plot_all_data:

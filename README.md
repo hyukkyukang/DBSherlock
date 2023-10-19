@@ -55,8 +55,14 @@ Please refer to [src/data/README.md](src/data/README.md)
 ## Visualize Dataset
 ```bash
 python scripts/visualize/data.py \
---data data/converted_dataset/tpcc_500w_test.json
+--data data/converted_dataset/tpcc_500w_test.json \
+--output results/visualize_data/
 ```
+
+The saved time series plots will look like this:
+
+![plot](images/example_data.png)
+
 
 ## Run Experiments
 ### Experiment 1
@@ -69,7 +75,7 @@ python scripts/experiments/experiment.py \
 ```
 The result plot should look like this:
 
-![plot](./results/exp1/performance.png)
+![plot](images/exp1_performance.png)
 
 ### Experiment 2
 DBSherlock Predicates versus PerfXplain (Figure 9 in the paper)
@@ -81,7 +87,7 @@ python scripts/experiments/experiment.py \
 ```
 The result plot should look like this:
 
-![plot](./results/exp2/performance.png)
+![plot](images/exp2_performance.png)
 
 ### Experiment 3
 Effectiveness of Merged Causal Models (Figure 8 in the paper)
@@ -93,4 +99,4 @@ python scripts/experiments/experiment.py \
 ```
 The result plot should look like this:
 
-![plot](./results/exp3/performance.png)
+![plot](images/exp3_performance.png)

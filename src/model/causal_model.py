@@ -2,6 +2,7 @@ import copy
 from typing import *
 
 import hkkang_utils.data as data_utils
+import hkkang_utils.file as file_utils
 
 from src.model.partition import Partition
 
@@ -44,7 +45,7 @@ class Predicate:
         assert other.operator2 in ["<", None], f"Invalid operator2: {self.operator2}"
         # Condition 1: if both are unary
         if self.is_unary and other.is_unary:
-            if self.operator1 == self.operator2:
+            if self.operator1 == other.operator1:
                 if self.operator1 == ">":
                     new_predicate = Predicate(
                         attribute=self.attribute,
@@ -123,30 +124,6 @@ class CausalModel:
     cause: str
     predicates_dic: Dict[str, Predicate]  # Effective predicates
 
-    def _do_satisfy_predicate(self, predicate: Predicate, partition: Partition) -> bool:
-        """Check if the partition satisfies the predicate"""
-        if predicate.is_unary:
-            if predicate.operator1 == ">":
-                return partition.min >= predicate.operand1
-            else:
-                return partition.max <= predicate.operand1
-        else:
-            assert (
-                predicate.operator1 == ">" and predicate.operator2 == "<"
-            ), f"Invalid predicate: {predicate}"
-            return (
-                partition.min >= predicate.operand1
-                and partition.max <= predicate.operand2
-            )
-
-    def is_valid_partition(self, partition: Partition) -> bool:
-        """Check if the partition satisfies any of the effective predicates"""
-        if partition.attribute not in self.predicates_dic:
-            return False
-        return self._do_satisfy_predicate(
-            self.predicates_dic[partition.attribute], partition
-        )
-
     def __add__(self, other: "CausalModel") -> "CausalModel":
         """Not in-place addition"""
         assert (
@@ -174,3 +151,40 @@ class CausalModel:
         if type(other) == int and other == 0:
             return copy.deepcopy(self)
         return self.__add__(other)
+
+    def _do_satisfy_predicate(self, predicate: Predicate, partition: Partition) -> bool:
+        """Check if the partition satisfies the predicate"""
+        if predicate.is_unary:
+            if predicate.operator1 == ">":
+                return partition.min >= predicate.operand1
+            else:
+                return partition.max <= predicate.operand1
+        else:
+            assert (
+                predicate.operator1 == ">" and predicate.operator2 == "<"
+            ), f"Invalid predicate: {predicate}"
+            return (
+                partition.min >= predicate.operand1
+                and partition.max <= predicate.operand2
+            )
+
+    def is_valid_partition(self, partition: Partition) -> bool:
+        """Check if the partition satisfies any of the effective predicates"""
+        if partition.attribute not in self.predicates_dic:
+            return False
+        return self._do_satisfy_predicate(
+            self.predicates_dic[partition.attribute], partition
+        )
+
+    def save(self, path: str) -> None:
+        """Save the causal model to a file"""
+        file_utils.write_json_file(self.dic, path)
+
+    def load(self, path: str) -> "CausalModel":
+        """Load the causal model from a file"""
+        model_in_json = file_utils.read_json_file(path)
+        model = CausalModel.from_dict(data=model_in_json)
+        # Update current object
+        self.cause = model.cause
+        self.predicates_dic = model.predicates_dic
+        return self

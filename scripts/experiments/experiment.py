@@ -1,5 +1,6 @@
 import argparse
 import logging
+import os
 from typing import *
 
 import hkkang_utils.file as file_utils
@@ -22,7 +23,7 @@ def split_dataset(
         testing_data = [
             data for idx, data in enumerate(target_data) if idx != target_idx
         ]
-    elif exp_id == 2:
+    elif exp_id in [2, 3]:
         # Use one testing data and the rest for training
         target_data = data.get_data_of_cause(cause=cause)
         testing_data = [target_data[target_idx]]
@@ -39,6 +40,7 @@ def main(
     data_path: str,
     output_dir: str,
     num_sample_per_case: int = 11,
+    do_save_model: bool = False,
 ) -> None:
     # Load data
     data_in_json = file_utils.read_json_file(data_path)
@@ -75,6 +77,15 @@ def main(
             for training_data in training_dataset:
                 causal_models.append(dbsherlock.create_causal_model(data=training_data))
             merged_causal_model = sum(causal_models)
+            if do_save_model:
+                logger.info(f"Saving model for {anomaly_cause}_{instance_idx}")
+                anomaly_cause_escaped = anomaly_cause.replace(" ", "_").replace(
+                    "/", "_"
+                )
+                model_path = os.path.join(
+                    output_dir, f"{anomaly_cause_escaped}_{instance_idx}.json"
+                )
+                merged_causal_model.save(path=model_path)
 
             # Compute confidence and precision for each testing data
             confidences: List[float] = []
@@ -113,8 +124,8 @@ def parse_args():
         "--exp_id",
         type=str,
         help="Experiment ID",
-        choices=["1", "2"],
-        default="1",
+        choices=["1", "2", "3"],
+        default="2",
     )
     parser.add_argument(
         "--data",
@@ -126,9 +137,13 @@ def parse_args():
         "--output_dir",
         type=str,
         help="Output directory to save experimental results",
-        default="results/exp1/",
+        default="results/exp2/",
     )
-
+    parser.add_argument(
+        "--do_save_model",
+        action="store_true",
+        help="Whether to save trained model or not",
+    )
     return parser.parse_args()
 
 
@@ -145,6 +160,14 @@ if __name__ == "__main__":
     exp_id = int(args.exp_id)
     data_path = args.data
     output_dir = args.output_dir
+    do_save_model = args.do_save_model
+
     logger.info(f"Running experiment 2 with data: {data_path}")
-    main(exp_id=exp_id, data_path=data_path, output_dir=output_dir)
+    main(
+        exp_id=exp_id,
+        data_path=data_path,
+        output_dir=output_dir,
+        do_save_model=do_save_model,
+    )
+
     logger.info(f"Done! Results are saved in {output_dir}")
